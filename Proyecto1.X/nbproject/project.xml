@@ -6,7 +6,7 @@
             <name>Proyecto1</name>
             <creation-uuid>b42db1ee-eccd-4e0e-afd6-734d434f405f</creation-uuid>
             <make-project-type>0</make-project-type>
-            <c-extensions/>
+            <c-extensions>c</c-extensions>
             <cpp-extensions/>
             <header-extensions/>
             <asminc-extensions/>
