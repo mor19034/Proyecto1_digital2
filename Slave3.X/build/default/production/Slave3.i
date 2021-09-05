@@ -2773,26 +2773,61 @@ void Lcd_Shift_Left(void);
 
 
 void convert(char *data,float a, int place);
+
+
+
+
+void I2C_Master_Init(const unsigned long c);
+
+
+
+
+
+
+
+void I2C_Master_Wait(void);
+
+
+
+void I2C_Master_Start(void);
+
+
+
+void I2C_Master_RepeatedStart(void);
+
+
+
+void I2C_Master_Stop(void);
+
+
+
+
+
+void I2C_Master_Write(unsigned d);
+
+
+
+
+unsigned short I2C_Master_Read(unsigned short a);
+
+
+
+void I2C_Slave_Init(uint8_t address);
 # 38 "Slave3.c" 2
 
 
 
 
 
-float lec1, volt1, sen_temp;
 
-volatile uint8_t adc1 = 0;
-volatile uint8_t adc2 = 0;
-volatile uint8_t contador = 0;
+uint16_t lec1;
+uint8_t tem1, tem2;
 
-char temperatura[10];
-char sensor2[10];
-char cont1[10];
-
-float conv1 = 0;
-float conv2 = 0;
-float conv3 = 0;
-# 65 "Slave3.c"
+uint8_t counter, speed;
+# 61 "Slave3.c"
+uint8_t z;
+uint8_t lec;
+# 72 "Slave3.c"
 void setup(void);
 
 
@@ -2800,12 +2835,48 @@ void setup(void);
 
 void __attribute__((picinterrupt(("")))) isr(void)
 {
+    if(PIR1bits.SSPIF == 1){
+        SSPCONbits.CKP = 0;
+
+        if ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL)){
+            z = SSPBUF;
+            SSPCONbits.SSPOV = 0;
+            SSPCONbits.WCOL = 0;
+            SSPCONbits.CKP = 1;
+        }
+
+        if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW) {
+
+            z = SSPBUF;
+
+            PIR1bits.SSPIF = 0;
+            SSPCONbits.CKP = 1;
+            while(!SSPSTATbits.BF);
+            lec = SSPBUF;
+            _delay((unsigned long)((250)*(8000000/4000000.0)));
+
+        }
+        else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
+            z = SSPBUF;
+            BF = 0;
+            SSPBUF = 16;
+# 112 "Slave3.c"
+            SSPCONbits.CKP = 1;
+            _delay((unsigned long)((250)*(8000000/4000000.0)));
+            while(SSPSTATbits.BF);
+        }
+
+        PIR1bits.SSPIF = 0;
+    }
+
 
 
     if (PIR1bits.ADIF) {
         if (ADCON0bits.CHS == 0) {
-            lec1 = ADRESH;
+            lec1 = ADRESH << 8;
             lec1 = lec1 + ADRESL;
+            tem1 = ADRESH;
+            tem2 = ADRESL;
         }
 
         else {
@@ -2815,6 +2886,27 @@ void __attribute__((picinterrupt(("")))) isr(void)
         PIR1bits.ADIF = 0;
     }
 
+    if (INTCONbits.T0IF ==1)
+    {
+        counter++;
+        INTCONbits.T0IF = 0;
+        TMR0 = 131;
+
+
+        if (counter >= speed) {
+            PORTDbits.RD0 = 0;
+        }
+
+        else {
+            PORTDbits.RD0 = 1;
+        }
+
+        if (counter == 256) {
+            counter = 0;
+        }
+
+    }
+
 }
 
 
@@ -2822,27 +2914,16 @@ void __attribute__((picinterrupt(("")))) isr(void)
 
 void main(void) {
     setup();
-    unsigned int a;
-    Lcd_Init();
-    Lcd_Clear();
+
+
+
     ADCON0bits.GO = 1;
 
 
 
 
     while(1){
-
-
-        Lcd_Set_Cursor(1, 1);
-        Lcd_Write_String("Temp");
-        Lcd_Set_Cursor(1, 8);
-        Lcd_Write_String("S2:");
-        Lcd_Set_Cursor(1, 14);
-        Lcd_Write_String("S3:");
-
-        volt1 = (lec1*5)/1023;
-        sen_temp = volt1*100;
-
+# 186 "Slave3.c"
         if (ADCON0bits.GO == 0){
             if (ADCON0bits.CHS == 0) {
                 ADCON0bits.CHS = 1;
@@ -2854,22 +2935,26 @@ void main(void) {
             _delay((unsigned long)((200)*(8000000/4000000.0)));
             ADCON0bits.GO = 1;
         }
+# 213 "Slave3.c"
+        if (lec1 > -1 && lec1 < 50) {
+            speed = 255;
+        }
 
+        else if (lec1 > 50 && lec1 < 125) {
+            speed = 180;
+        }
 
-        Lcd_Set_Cursor(2, 1);
-        Lcd_Write_String(temperatura);
-        Lcd_Set_Cursor(2, 6);
-        Lcd_Write_String("C");
+        else if (lec1 > 125 && lec1 < 200) {
+            speed = 120;
+        }
 
+        else if (lec1 > 200 && lec1 < 300) {
+            speed = 80;
+        }
 
-
-        conv1 = 0;
-        conv2 = 0;
-
-
-        conv1 = sen_temp;
-
-        convert(temperatura, conv1, 2);
+        else if (lec1 > 300) {
+            speed = 20;
+        }
 
     }
     return;
@@ -2889,6 +2974,7 @@ void setup(void) {
     PORTB = 0X00;
     PORTC = 0X00;
     PORTD = 0X00;
+    I2C_Slave_Init(0x50);
 
 
     OSCCONbits.IRCF2 = 1;
@@ -2900,8 +2986,12 @@ void setup(void) {
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
     PIE1bits.ADIE = 1;
+    INTCONbits.T0IE = 1;
+    PIE1bits.SSPIE = 1;
 
     PIR1bits.ADIF = 0;
+    INTCONbits.T0IF = 0;
+    PIR1bits.SSPIF = 0;
 
 
     ADCON1bits.ADFM = 1;
@@ -2915,4 +3005,12 @@ void setup(void) {
     _delay((unsigned long)((200)*(8000000/4000000.0)));
 
 
+
+    OPTION_REGbits.T0CS = 0;
+    OPTION_REGbits.T0SE = 0;
+    OPTION_REGbits.PSA = 0;
+    OPTION_REGbits.PS2 = 1;
+    OPTION_REGbits.PS1 = 0;
+    OPTION_REGbits.PS0 = 1;
+    TMR0 = 131;
 }

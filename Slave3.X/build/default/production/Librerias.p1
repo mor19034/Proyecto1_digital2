@@ -17,6 +17,61 @@ Version 4.0 HI-TECH Software Intermediate Code
 "92 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\pic.h
 [v __delay `JF1256 ~T0 @X0 0 e ]
 [p i __delay ]
+"850 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 850: extern volatile unsigned char SSPCON __attribute__((address(0x014)));
+[v _SSPCON `Vuc ~T0 @X0 0 e@20 ]
+"1979
+[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1979: extern volatile unsigned char SSPCON2 __attribute__((address(0x091)));
+[v _SSPCON2 `Vuc ~T0 @X0 0 e@145 ]
+"2048
+[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2048: extern volatile unsigned char SSPADD __attribute__((address(0x093)));
+[v _SSPADD `Vuc ~T0 @X0 0 e@147 ]
+"2177
+[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2177: extern volatile unsigned char SSPSTAT __attribute__((address(0x094)));
+[v _SSPSTAT `Vuc ~T0 @X0 0 e@148 ]
+"1546
+[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1546:     struct {
+[s S57 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S57 . TRISC0 TRISC1 TRISC2 TRISC3 TRISC4 TRISC5 TRISC6 TRISC7 ]
+"1545
+[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1545: typedef union {
+[u S56 `S57 1 ]
+[n S56 . . ]
+"1557
+[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1557: extern volatile TRISCbits_t TRISCbits __attribute__((address(0x087)));
+[v _TRISCbits `VS56 ~T0 @X0 0 e@135 ]
+"1985
+[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1985:     struct {
+[s S76 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S76 . SEN RSEN PEN RCEN ACKEN ACKDT ACKSTAT GCEN ]
+"1984
+[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1984: typedef union {
+[u S75 `S76 1 ]
+[n S75 . . ]
+"1996
+[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1996: extern volatile SSPCON2bits_t SSPCON2bits __attribute__((address(0x091)));
+[v _SSPCON2bits `VS75 ~T0 @X0 0 e@145 ]
+"843
+[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 843: extern volatile unsigned char SSPBUF __attribute__((address(0x013)));
+[v _SSPBUF `Vuc ~T0 @X0 0 e@19 ]
+"4457
+[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 4457: extern volatile __bit TRISC3 __attribute__((address(0x43B)));
+[v _TRISC3 `Vb ~T0 @X0 0 e@1083 ]
+"4460
+[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 4460: extern volatile __bit TRISC4 __attribute__((address(0x43C)));
+[v _TRISC4 `Vb ~T0 @X0 0 e@1084 ]
+"3896
+[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3896: extern volatile __bit GIE __attribute__((address(0x5F)));
+[v _GIE `Vb ~T0 @X0 0 e@95 ]
+"4040
+[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 4040: extern volatile __bit PEIE __attribute__((address(0x5E)));
+[v _PEIE `Vb ~T0 @X0 0 e@94 ]
+"4277
+[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 4277: extern volatile __bit SSPIF __attribute__((address(0x63)));
+[v _SSPIF `Vb ~T0 @X0 0 e@99 ]
+"4274
+[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 4274: extern volatile __bit SSPIE __attribute__((address(0x463)));
+[v _SSPIE `Vb ~T0 @X0 0 e@1123 ]
 "54 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -702,4 +757,244 @@ Version 4.0 HI-TECH Software Intermediate Code
 "140
 [; ;Librerias.c: 140: }
 [e :UE 155 ]
+}
+"145
+[; ;Librerias.c: 145: void I2C_Master_Init(const unsigned long c)
+[v _I2C_Master_Init `(v ~T0 @X0 1 ef1`Cul ]
+"146
+[; ;Librerias.c: 146: {
+{
+[e :U _I2C_Master_Init ]
+"145
+[; ;Librerias.c: 145: void I2C_Master_Init(const unsigned long c)
+[v _c `Cul ~T0 @X0 1 r1 ]
+"146
+[; ;Librerias.c: 146: {
+[f ]
+"147
+[; ;Librerias.c: 147:     SSPCON = 0b00101000;
+[e = _SSPCON -> -> 40 `i `uc ]
+"148
+[; ;Librerias.c: 148:     SSPCON2 = 0;
+[e = _SSPCON2 -> -> 0 `i `uc ]
+"149
+[; ;Librerias.c: 149:     SSPADD = (4000000/(4*c))-1;
+[e = _SSPADD -> - / -> -> 4000000 `l `ul * -> -> -> 4 `i `l `ul _c -> -> -> 1 `i `l `ul `uc ]
+"150
+[; ;Librerias.c: 150:     SSPSTAT = 0;
+[e = _SSPSTAT -> -> 0 `i `uc ]
+"151
+[; ;Librerias.c: 151:     TRISCbits.TRISC3 = 1;
+[e = . . _TRISCbits 0 3 -> -> 1 `i `uc ]
+"152
+[; ;Librerias.c: 152:     TRISCbits.TRISC4 = 1;
+[e = . . _TRISCbits 0 4 -> -> 1 `i `uc ]
+"153
+[; ;Librerias.c: 153: }
+[e :UE 182 ]
+}
+"161
+[; ;Librerias.c: 161: void I2C_Master_Wait()
+[v _I2C_Master_Wait `(v ~T0 @X0 1 ef ]
+"162
+[; ;Librerias.c: 162: {
+{
+[e :U _I2C_Master_Wait ]
+[f ]
+"163
+[; ;Librerias.c: 163:     while ((SSPSTAT & 0x04) || (SSPCON2 & 0x1F));
+[e $U 184  ]
+[e :U 185 ]
+[e :U 184 ]
+[e $ || != & -> _SSPSTAT `i -> 4 `i -> 0 `i != & -> _SSPCON2 `i -> 31 `i -> 0 `i 185  ]
+[e :U 186 ]
+"164
+[; ;Librerias.c: 164: }
+[e :UE 183 ]
+}
+"168
+[; ;Librerias.c: 168: void I2C_Master_Start()
+[v _I2C_Master_Start `(v ~T0 @X0 1 ef ]
+"169
+[; ;Librerias.c: 169: {
+{
+[e :U _I2C_Master_Start ]
+[f ]
+"170
+[; ;Librerias.c: 170:     I2C_Master_Wait();
+[e ( _I2C_Master_Wait ..  ]
+"171
+[; ;Librerias.c: 171:     SSPCON2bits.SEN = 1;
+[e = . . _SSPCON2bits 0 0 -> -> 1 `i `uc ]
+"172
+[; ;Librerias.c: 172: }
+[e :UE 187 ]
+}
+"176
+[; ;Librerias.c: 176: void I2C_Master_RepeatedStart()
+[v _I2C_Master_RepeatedStart `(v ~T0 @X0 1 ef ]
+"177
+[; ;Librerias.c: 177: {
+{
+[e :U _I2C_Master_RepeatedStart ]
+[f ]
+"178
+[; ;Librerias.c: 178:     I2C_Master_Wait();
+[e ( _I2C_Master_Wait ..  ]
+"179
+[; ;Librerias.c: 179:     SSPCON2bits.RSEN = 1;
+[e = . . _SSPCON2bits 0 1 -> -> 1 `i `uc ]
+"180
+[; ;Librerias.c: 180: }
+[e :UE 188 ]
+}
+"184
+[; ;Librerias.c: 184: void I2C_Master_Stop()
+[v _I2C_Master_Stop `(v ~T0 @X0 1 ef ]
+"185
+[; ;Librerias.c: 185: {
+{
+[e :U _I2C_Master_Stop ]
+[f ]
+"186
+[; ;Librerias.c: 186:     I2C_Master_Wait();
+[e ( _I2C_Master_Wait ..  ]
+"187
+[; ;Librerias.c: 187:     SSPCON2bits.PEN = 1;
+[e = . . _SSPCON2bits 0 2 -> -> 1 `i `uc ]
+"188
+[; ;Librerias.c: 188: }
+[e :UE 189 ]
+}
+"194
+[; ;Librerias.c: 194: void I2C_Master_Write(unsigned d)
+[v _I2C_Master_Write `(v ~T0 @X0 1 ef1`ui ]
+"195
+[; ;Librerias.c: 195: {
+{
+[e :U _I2C_Master_Write ]
+"194
+[; ;Librerias.c: 194: void I2C_Master_Write(unsigned d)
+[v _d `ui ~T0 @X0 1 r1 ]
+"195
+[; ;Librerias.c: 195: {
+[f ]
+"196
+[; ;Librerias.c: 196:     I2C_Master_Wait();
+[e ( _I2C_Master_Wait ..  ]
+"197
+[; ;Librerias.c: 197:     SSPBUF = d;
+[e = _SSPBUF -> _d `uc ]
+"198
+[; ;Librerias.c: 198: }
+[e :UE 190 ]
+}
+"203
+[; ;Librerias.c: 203: unsigned short I2C_Master_Read(unsigned short a)
+[v _I2C_Master_Read `(us ~T0 @X0 1 ef1`us ]
+"204
+[; ;Librerias.c: 204: {
+{
+[e :U _I2C_Master_Read ]
+"203
+[; ;Librerias.c: 203: unsigned short I2C_Master_Read(unsigned short a)
+[v _a `us ~T0 @X0 1 r1 ]
+"204
+[; ;Librerias.c: 204: {
+[f ]
+"205
+[; ;Librerias.c: 205:     unsigned short temp;
+[v _temp `us ~T0 @X0 1 a ]
+"206
+[; ;Librerias.c: 206:     I2C_Master_Wait();
+[e ( _I2C_Master_Wait ..  ]
+"207
+[; ;Librerias.c: 207:     SSPCON2bits.RCEN = 1;
+[e = . . _SSPCON2bits 0 3 -> -> 1 `i `uc ]
+"208
+[; ;Librerias.c: 208:     I2C_Master_Wait();
+[e ( _I2C_Master_Wait ..  ]
+"209
+[; ;Librerias.c: 209:     temp = SSPBUF;
+[e = _temp -> _SSPBUF `us ]
+"210
+[; ;Librerias.c: 210:     I2C_Master_Wait();
+[e ( _I2C_Master_Wait ..  ]
+"211
+[; ;Librerias.c: 211:     if(a == 1){
+[e $ ! == -> _a `ui -> -> 1 `i `ui 192  ]
+{
+"212
+[; ;Librerias.c: 212:         SSPCON2bits.ACKDT = 0;
+[e = . . _SSPCON2bits 0 5 -> -> 0 `i `uc ]
+"213
+[; ;Librerias.c: 213:     }else{
+}
+[e $U 193  ]
+[e :U 192 ]
+{
+"214
+[; ;Librerias.c: 214:         SSPCON2bits.ACKDT = 1;
+[e = . . _SSPCON2bits 0 5 -> -> 1 `i `uc ]
+"215
+[; ;Librerias.c: 215:     }
+}
+[e :U 193 ]
+"216
+[; ;Librerias.c: 216:     SSPCON2bits.ACKEN = 1;
+[e = . . _SSPCON2bits 0 4 -> -> 1 `i `uc ]
+"217
+[; ;Librerias.c: 217:     return temp;
+[e ) _temp ]
+[e $UE 191  ]
+"218
+[; ;Librerias.c: 218: }
+[e :UE 191 ]
+}
+"222
+[; ;Librerias.c: 222: void I2C_Slave_Init(uint8_t address)
+[v _I2C_Slave_Init `(v ~T0 @X0 1 ef1`uc ]
+"223
+[; ;Librerias.c: 223: {
+{
+[e :U _I2C_Slave_Init ]
+"222
+[; ;Librerias.c: 222: void I2C_Slave_Init(uint8_t address)
+[v _address `uc ~T0 @X0 1 r1 ]
+"223
+[; ;Librerias.c: 223: {
+[f ]
+"224
+[; ;Librerias.c: 224:     SSPADD = address;
+[e = _SSPADD _address ]
+"225
+[; ;Librerias.c: 225:     SSPCON = 0x36;
+[e = _SSPCON -> -> 54 `i `uc ]
+"226
+[; ;Librerias.c: 226:     SSPSTAT = 0x80;
+[e = _SSPSTAT -> -> 128 `i `uc ]
+"227
+[; ;Librerias.c: 227:     SSPCON2 = 0x01;
+[e = _SSPCON2 -> -> 1 `i `uc ]
+"228
+[; ;Librerias.c: 228:     TRISC3 = 1;
+[e = _TRISC3 -> -> 1 `i `b ]
+"229
+[; ;Librerias.c: 229:     TRISC4 = 1;
+[e = _TRISC4 -> -> 1 `i `b ]
+"230
+[; ;Librerias.c: 230:     GIE = 1;
+[e = _GIE -> -> 1 `i `b ]
+"231
+[; ;Librerias.c: 231:     PEIE = 1;
+[e = _PEIE -> -> 1 `i `b ]
+"232
+[; ;Librerias.c: 232:     SSPIF = 0;
+[e = _SSPIF -> -> 0 `i `b ]
+"233
+[; ;Librerias.c: 233:     SSPIE = 1;
+[e = _SSPIE -> -> 1 `i `b ]
+"234
+[; ;Librerias.c: 234: }
+[e :UE 194 ]
 }
