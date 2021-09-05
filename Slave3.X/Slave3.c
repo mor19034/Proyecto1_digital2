@@ -42,21 +42,24 @@
 //*****************************************************************************
 //char val_temp;
 uint16_t lec1; 
-float volt1, sen_temp;
+uint8_t tem1, tem2;
 
 uint8_t counter, speed; 
 
-volatile uint8_t adc1 = 0;
-volatile uint8_t adc2 = 0;
-volatile uint8_t contador = 0;
+//volatile uint8_t adc1 = 0;
+//volatile uint8_t adc2 = 0;
+//volatile uint8_t contador = 0;
+//
+//char temperatura[10];
+//char sensor2[10];
+//char cont1[10];
+//
+//float conv1 = 0;
+//float conv2 = 0;
+//float conv3 = 0;
 
-char temperatura[10];
-char sensor2[10];
-char cont1[10];
-
-float conv1 = 0;
-float conv2 = 0;
-float conv3 = 0;
+uint8_t z;
+uint8_t lec;
 
 //*****************************************************************************
 // Definiciones
@@ -73,12 +76,55 @@ void setup(void);
 //*****************************************************************************
 void __interrupt() isr(void)
 {
-//Interupcion del Timer 0 (Multiplexado)
+    if(PIR1bits.SSPIF == 1){ 
+        SSPCONbits.CKP = 0;
+       
+        if ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL)){
+            z = SSPBUF;                 // Read the previous value to clear the buffer
+            SSPCONbits.SSPOV = 0;       // Clear the overflow flag
+            SSPCONbits.WCOL = 0;        // Clear the collision bit
+            SSPCONbits.CKP = 1;         // Enables SCL (Clock)
+        }
+
+        if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW) {
+            //__delay_us(7);
+            z = SSPBUF;                 // Lectura del SSBUF para limpiar el buffer y la bandera BF
+            //__delay_us(2);
+            PIR1bits.SSPIF = 0;         // Limpia bandera de interrupción recepción/transmisión SSP
+            SSPCONbits.CKP = 1;         // Habilita entrada de pulsos de reloj SCL
+            while(!SSPSTATbits.BF);     // Esperar a que la recepción se complete
+            lec = SSPBUF;             // Guardar en el PORTD el valor del buffer de recepción
+            __delay_us(250);
+            
+        }
+        else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){ //Escreitura 
+            z = SSPBUF;
+            BF = 0;
+            SSPBUF = 16;
+//                if (lec == 1) {
+//                    SSPBUF = tem1;
+//                    PORTB++;
+//                }
+//                else if (lec == 2) {
+//                    SSPBUF = 16;
+//                }
+                    
+            SSPCONbits.CKP = 1;
+            __delay_us(250);
+            while(SSPSTATbits.BF);
+        }
+       
+        PIR1bits.SSPIF = 0;    
+    }
+    
+    //Interupcion del Timer 0 (Multiplexado)
     
     if (PIR1bits.ADIF) {
         if  (ADCON0bits.CHS == 0) { //Verificamos el canal que se esta convirtiendo
             lec1 = ADRESH << 8;         //Dependiendo el canal guardamos el resultado
             lec1 = lec1 + ADRESL;
+            tem1 = ADRESH;
+            tem2 = ADRESL;
         }
         
         else {
@@ -116,9 +162,9 @@ void __interrupt() isr(void)
 //*****************************************************************************
 void main(void) {
     setup();                //Llamamos a la configuracion del PIC
-    unsigned int a;
-    Lcd_Init();
-    Lcd_Clear();
+//    unsigned int a;
+//    Lcd_Init();
+//    Lcd_Clear();
     ADCON0bits.GO   = 1;    //Damos inicio a la conversion
     
 //******************************************************************************
@@ -126,16 +172,16 @@ void main(void) {
 //******************************************************************************
     while(1){
         
-        //Primera linea del LDC
-        Lcd_Set_Cursor(1, 1);
-        Lcd_Write_String("Temp");
-        Lcd_Set_Cursor(1, 8);
-        Lcd_Write_String("S2:");
-        Lcd_Set_Cursor(1, 14);
-        Lcd_Write_String("S3:");
-        
-        volt1 = (lec1/ (float) 1023)*5;
-        sen_temp = (volt1* (float) 100);
+//        //Primera linea del LDC
+//        Lcd_Set_Cursor(1, 1);
+//        Lcd_Write_String("Temp");
+//        Lcd_Set_Cursor(1, 8);
+//        Lcd_Write_String("S2:");
+//        Lcd_Set_Cursor(1, 14);
+//        Lcd_Write_String("S3:");
+//        
+//        volt1 = (lec1/ (float) 1023)*5;
+//        sen_temp = (volt1* (float) 100);
         
         if (ADCON0bits.GO == 0){        //Cuando termine la conversion
             if (ADCON0bits.CHS == 0) {  //Verificamos cual fue el ultimo canal convertido
@@ -149,39 +195,39 @@ void main(void) {
             ADCON0bits.GO = 1;          //termine correctamente
         }
         
-        //Mostramos en el LCD los valores de los sensores
-        Lcd_Set_Cursor(2, 1);             //Elegimos posicion
-        Lcd_Write_String(temperatura);        //Escribimos valor del sensor
-        Lcd_Set_Cursor(2, 6);             //Nueva posicion
-        Lcd_Write_String("C");            //Dimensional del sensor
+//        //Mostramos en el LCD los valores de los sensores
+//        Lcd_Set_Cursor(2, 1);             //Elegimos posicion
+//        Lcd_Write_String(temperatura);        //Escribimos valor del sensor
+//        Lcd_Set_Cursor(2, 6);             //Nueva posicion
+//        Lcd_Write_String("C");            //Dimensional del sensor
         
         
-        //Preparación de los sensores para ser mostrados en el LCD
-        conv1 = 0;//se reinicia las cada ves que se inicia el proceso de enviar datos
-        conv2 = 0;//tanto para la LCD como por UART.
+//        //Preparación de los sensores para ser mostrados en el LCD
+//        conv1 = 0;//se reinicia las cada ves que se inicia el proceso de enviar datos
+//        conv2 = 0;//tanto para la LCD como por UART.
+//        
+//        conv1 = sen_temp;
+//        //maximo que un puerto puede tener, despues se multiplica por 5 para conocer el voltaje actual del puerto                                          
+//        convert(temperatura, conv1, 2);//se convierte el valor actual a un valor ASCII.
         
-        conv1 = sen_temp;
-        //maximo que un puerto puede tener, despues se multiplica por 5 para conocer el voltaje actual del puerto                                          
-        convert(temperatura, conv1, 2);//se convierte el valor actual a un valor ASCII.
-        
-        if (lec1 > 0 && lec1 < 50) {
-                speed = 255;
+        if (lec1 > -1 && lec1 < 50) {
+            speed = 255;
         }
                 
         else if (lec1 > 50 && lec1 < 125) {
-                speed = 180;
+            speed = 180;
         }
                 
         else if (lec1 > 125 && lec1 < 200) {
-                speed = 120;
+            speed = 120;
         }
                 
         else if (lec1 > 200 && lec1 < 300) {
-                speed = 80;
+            speed = 80;
         }
                 
         else if (lec1 > 300) {
-                speed = 20;
+            speed = 20;
         }
         
     }
@@ -202,6 +248,7 @@ void setup(void) {
     PORTB   = 0X00;
     PORTC   = 0X00;
     PORTD   = 0X00;
+    I2C_Slave_Init(0x50);
     
     //Configuracion del Oscilador
     OSCCONbits.IRCF2 = 1;       //Reloj interno de 8MHz
@@ -214,9 +261,11 @@ void setup(void) {
     INTCONbits.PEIE  = 1;
     PIE1bits.ADIE    = 1;
     INTCONbits.T0IE  = 1;
+    PIE1bits.SSPIE = 1;
     
     PIR1bits.ADIF    = 0;
     INTCONbits.T0IF  = 0;
+    PIR1bits.SSPIF = 0;
     
     //Configuracion ADC
     ADCON1bits.ADFM     = 1;    //Justificado a la derecha
