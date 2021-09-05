@@ -11,6 +11,13 @@
 
 
 #include "hx711.h"
+#define _XTAL_FREQ 8000000
+#define hx711_dat  PORTDbits.RD6   //pin de datos del micro
+#define hx711_ck   PORTDbits.RD7     // pin de reloj
+
+
+#define hx711_dat_dir  TRISDbits.TRISD6
+#define hx711_ck_dir   TRISDbits.TRISD7
 
 extern signed long offset;  //guarda el offset
 

@@ -13,13 +13,13 @@
 #define	hx711_H
 
 #include <xc.h> // include processor files - each processor file is guarded.  
+#define _XTAL_FREQ 8000000
+#define hx711_dat  PORTDbits.RD6   //pin de datos del micro
+#define hx711_ck   PORTDbits.RD7     // pin de reloj
 
-extern sfr  sbit hx711_dat;
-extern sfr sbit hx711_ck ;
 
-
-extern sfr sbit hx711_dat_dir;
-extern sfr sbit hx711_ck_dir ;
+#define hx711_dat_dir  TRISDbits.TRISD6
+#define hx711_ck_dir   TRISDbits.TRISD7
 
 extern signed long offset;
 
