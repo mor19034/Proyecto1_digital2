@@ -2779,7 +2779,11 @@ void convert(char *data,float a, int place);
 
 
 
-float lec1, volt1, sen_temp;
+
+uint16_t lec1;
+float volt1, sen_temp;
+
+uint8_t counter, speed;
 
 volatile uint8_t adc1 = 0;
 volatile uint8_t adc2 = 0;
@@ -2792,7 +2796,7 @@ char cont1[10];
 float conv1 = 0;
 float conv2 = 0;
 float conv3 = 0;
-# 65 "Slave3.c"
+# 69 "Slave3.c"
 void setup(void);
 
 
@@ -2804,7 +2808,7 @@ void __attribute__((picinterrupt(("")))) isr(void)
 
     if (PIR1bits.ADIF) {
         if (ADCON0bits.CHS == 0) {
-            lec1 = ADRESH;
+            lec1 = ADRESH << 8;
             lec1 = lec1 + ADRESL;
         }
 
@@ -2813,6 +2817,27 @@ void __attribute__((picinterrupt(("")))) isr(void)
         }
 
         PIR1bits.ADIF = 0;
+    }
+
+    if (INTCONbits.T0IF ==1)
+    {
+        counter++;
+        INTCONbits.T0IF = 0;
+        TMR0 = 131;
+
+
+        if (counter >= speed) {
+            PORTDbits.RD0 = 0;
+        }
+
+        else {
+            PORTDbits.RD0 = 1;
+        }
+
+        if (counter == 256) {
+            counter = 0;
+        }
+
     }
 
 }
@@ -2840,8 +2865,8 @@ void main(void) {
         Lcd_Set_Cursor(1, 14);
         Lcd_Write_String("S3:");
 
-        volt1 = (lec1*5)/1023;
-        sen_temp = volt1*100;
+        volt1 = (lec1/ (float) 1023)*5;
+        sen_temp = (volt1* (float) 100);
 
         if (ADCON0bits.GO == 0){
             if (ADCON0bits.CHS == 0) {
@@ -2866,10 +2891,29 @@ void main(void) {
         conv1 = 0;
         conv2 = 0;
 
-
         conv1 = sen_temp;
 
         convert(temperatura, conv1, 2);
+
+        if (lec1 > 0 && lec1 < 50) {
+                speed = 255;
+        }
+
+        else if (lec1 > 50 && lec1 < 125) {
+                speed = 180;
+        }
+
+        else if (lec1 > 125 && lec1 < 200) {
+                speed = 120;
+        }
+
+        else if (lec1 > 200 && lec1 < 300) {
+                speed = 80;
+        }
+
+        else if (lec1 > 300) {
+                speed = 20;
+        }
 
     }
     return;
@@ -2900,8 +2944,10 @@ void setup(void) {
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
     PIE1bits.ADIE = 1;
+    INTCONbits.T0IE = 1;
 
     PIR1bits.ADIF = 0;
+    INTCONbits.T0IF = 0;
 
 
     ADCON1bits.ADFM = 1;
@@ -2915,4 +2961,12 @@ void setup(void) {
     _delay((unsigned long)((200)*(8000000/4000000.0)));
 
 
+
+    OPTION_REGbits.T0CS = 0;
+    OPTION_REGbits.T0SE = 0;
+    OPTION_REGbits.PSA = 0;
+    OPTION_REGbits.PS2 = 1;
+    OPTION_REGbits.PS1 = 0;
+    OPTION_REGbits.PS0 = 1;
+    TMR0 = 131;
 }
