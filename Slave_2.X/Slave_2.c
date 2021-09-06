@@ -17,9 +17,9 @@
 //
 // Creado: 08 aug, 2021
 // Ultima modificacion: 09 aug, 2021
-//*****************************************************************************
+//***************************
 // Palabra de configuración
-//*****************************************************************************
+//***************************
 // CONFIG1
 #pragma config FOSC = INTRC_NOCLKOUT// Oscillator Selection bits (RCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, RC on RA7/OSC1/CLKIN)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
@@ -39,34 +39,35 @@
 // #pragma config statements should precede project file includes.
 // Use project enums instead of #define for ON and OFF.
 
-//*****************************************************************************
+//***************************
 // Definición e importación de librerías
-//*****************************************************************************
+//***************************
 #include <stdint.h>
 #include <pic16f887.h>
 #include "Librerias.h"
 #include <xc.h>
-//*****************************************************************************
+//***************************
 // Definición de variables
-//*****************************************************************************
+//***************************
 #define _XTAL_FREQ 8000000
 uint8_t z;
 uint8_t dato;
 uint8_t adc;
 uint8_t lec;
+uint8_t air;
 
 uint16_t lec1; 
 uint8_t tem1, tem2;
 
 uint8_t counter, speed, torque; 
-//*****************************************************************************
+//***************************
 // Definición de funciones para que se puedan colocar después del main de lo 
 // contrario hay que colocarlos todas las funciones antes del main
-//*****************************************************************************
+//***************************
 void setup(void);
-//*****************************************************************************
+//***************************
 // Código de Interrupción 
-//*****************************************************************************
+//***************************
 void __interrupt() isr(void) {
     if(PIR1bits.SSPIF == 1){ 
 
@@ -112,14 +113,8 @@ void __interrupt() isr(void) {
     
     //Interupcion del ADC
     if (PIR1bits.ADIF) {
-        if  (ADCON0bits.CHS == 0) { //Verificamos el canal que se esta convirtiendo
-            tem1 = ADRESH;
-            tem2 = ADRESL;
-        }
-        
-        else {
-            PORTD = ADRESH;
-        }
+        tem1 = ADRESH;
+        tem2 = ADRESL;
         
         PIR1bits.ADIF = 0;          //Reiniciamos la interupcion
     }
@@ -145,24 +140,18 @@ void __interrupt() isr(void) {
 //        
 //    }
 }
-//*****************************************************************************
+//***************************
 // Main
-//*****************************************************************************
+//***************************
 void main(void) {
     setup();
     ADCON0bits.GO   = 1;    //Damos inicio a la conversion
     
-//******************************************************************************
+//**************************
 //Loop principal
-//******************************************************************************
+//**************************
     while(1){
         if (ADCON0bits.GO == 0){        //Cuando termine la conversion
-            if (ADCON0bits.CHS == 0) {  //Verificamos cual fue el ultimo canal convertido
-                ADCON0bits.CHS = 1;     //Despues cambiamos al siguiente canal
-            }
-            else {
-                ADCON0bits.CHS = 0;
-            }
             
             __delay_us(200);            //Esperamos un tiempo para que la conversion
             ADCON0bits.GO = 1;          //termine correctamente
@@ -172,7 +161,13 @@ void main(void) {
         lec1 = lec1 + tem2;
         
         
-        if (lec1 > -1 && lec1 < 50) {
+        air = PORTAbits.RA1;
+        
+        if (air == 1) {
+        
+            torque = 255;
+            
+            if (lec1 > -1 && lec1 < 50) {
             speed = 255;
         }
                 
@@ -192,8 +187,11 @@ void main(void) {
             speed = 20;
         }
         
-        torque = 255;
-        PORTB = speed;
+        }
+        else {
+            torque = 0;
+            speed = 0;
+        }
         
         CCPR1L = speed;         //Dependiendo el canal guardamos el resultado
         CCP1CONbits.DC1B1 = speed & 0b01;
@@ -206,11 +204,11 @@ void main(void) {
     }
     return;
 }
-//*****************************************************************************
+//***************************
 // Función de Inicialización
-//*****************************************************************************
+//***************************
 void setup(void){
-    ANSEL = 0x03;
+    ANSEL = 0x01;
     ANSELH = 0x00;
     
     TRISA = 0x03;
@@ -271,4 +269,3 @@ void setup(void){
     TRISCbits.TRISC2    = 0;        //Colocamos RC1 y RC2 como salidas 
     TRISCbits.TRISC1    = 0;
 }
-
