@@ -2700,6 +2700,7 @@ uint8_t z;
 uint8_t dato;
 uint8_t adc;
 uint8_t lec;
+uint8_t air;
 
 uint16_t lec1;
 uint8_t tem1, tem2;
@@ -2758,18 +2759,12 @@ void __attribute__((picinterrupt(("")))) isr(void) {
 
 
     if (PIR1bits.ADIF) {
-        if (ADCON0bits.CHS == 0) {
-            tem1 = ADRESH;
-            tem2 = ADRESL;
-        }
-
-        else {
-            PORTD = ADRESH;
-        }
+        tem1 = ADRESH;
+        tem2 = ADRESL;
 
         PIR1bits.ADIF = 0;
     }
-# 147 "Slave_2.c"
+# 142 "Slave_2.c"
 }
 
 
@@ -2783,12 +2778,6 @@ void main(void) {
 
     while(1){
         if (ADCON0bits.GO == 0){
-            if (ADCON0bits.CHS == 0) {
-                ADCON0bits.CHS = 1;
-            }
-            else {
-                ADCON0bits.CHS = 0;
-            }
 
             _delay((unsigned long)((200)*(8000000/4000000.0)));
             ADCON0bits.GO = 1;
@@ -2798,7 +2787,13 @@ void main(void) {
         lec1 = lec1 + tem2;
 
 
-        if (lec1 > -1 && lec1 < 50) {
+        air = PORTAbits.RA1;
+
+        if (air == 1) {
+
+            torque = 255;
+
+            if (lec1 > -1 && lec1 < 50) {
             speed = 255;
         }
 
@@ -2818,8 +2813,11 @@ void main(void) {
             speed = 20;
         }
 
-        torque = 255;
-        PORTB = speed;
+        }
+        else {
+            torque = 0;
+            speed = 0;
+        }
 
         CCPR1L = speed;
         CCP1CONbits.DC1B1 = speed & 0b01;
@@ -2836,7 +2834,7 @@ void main(void) {
 
 
 void setup(void){
-    ANSEL = 0x03;
+    ANSEL = 0x01;
     ANSELH = 0x00;
 
     TRISA = 0x03;

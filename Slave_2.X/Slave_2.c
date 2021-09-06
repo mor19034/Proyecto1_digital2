@@ -54,6 +54,7 @@ uint8_t z;
 uint8_t dato;
 uint8_t adc;
 uint8_t lec;
+uint8_t air;
 
 uint16_t lec1; 
 uint8_t tem1, tem2;
@@ -112,14 +113,8 @@ void __interrupt() isr(void) {
     
     //Interupcion del ADC
     if (PIR1bits.ADIF) {
-        if  (ADCON0bits.CHS == 0) { //Verificamos el canal que se esta convirtiendo
-            tem1 = ADRESH;
-            tem2 = ADRESL;
-        }
-        
-        else {
-            PORTD = ADRESH;
-        }
+        tem1 = ADRESH;
+        tem2 = ADRESL;
         
         PIR1bits.ADIF = 0;          //Reiniciamos la interupcion
     }
@@ -157,12 +152,6 @@ void main(void) {
 //******************************************************************************
     while(1){
         if (ADCON0bits.GO == 0){        //Cuando termine la conversion
-            if (ADCON0bits.CHS == 0) {  //Verificamos cual fue el ultimo canal convertido
-                ADCON0bits.CHS = 1;     //Despues cambiamos al siguiente canal
-            }
-            else {
-                ADCON0bits.CHS = 0;
-            }
             
             __delay_us(200);            //Esperamos un tiempo para que la conversion
             ADCON0bits.GO = 1;          //termine correctamente
@@ -172,7 +161,13 @@ void main(void) {
         lec1 = lec1 + tem2;
         
         
-        if (lec1 > -1 && lec1 < 50) {
+        air = PORTAbits.RA1;
+        
+        if (air == 1) {
+        
+            torque = 255;
+            
+            if (lec1 > -1 && lec1 < 50) {
             speed = 255;
         }
                 
@@ -192,8 +187,11 @@ void main(void) {
             speed = 20;
         }
         
-        torque = 255;
-        PORTB = speed;
+        }
+        else {
+            torque = 0;
+            speed = 0;
+        }
         
         CCPR1L = speed;         //Dependiendo el canal guardamos el resultado
         CCP1CONbits.DC1B1 = speed & 0b01;
@@ -210,7 +208,7 @@ void main(void) {
 // Función de Inicialización
 //*****************************************************************************
 void setup(void){
-    ANSEL = 0x03;
+    ANSEL = 0x01;
     ANSELH = 0x00;
     
     TRISA = 0x03;
