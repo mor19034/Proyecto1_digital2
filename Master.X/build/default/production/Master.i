@@ -2932,9 +2932,11 @@ extern char * ultoa(char * buf, unsigned long val, int base);
 extern char * ftoa(float f, int * status);
 # 44 "Master.c" 2
 # 53 "Master.c"
-volatile uint8_t adc = 0;
-volatile int8_t sensor = 0;
+volatile uint8_t tem1 = 0;
+volatile uint8_t tem2 = 0;
 volatile uint8_t contador = 0;
+float temp;
+float volt, temperatura;
 
 char lcd1[10];
 char lcd2[10];
@@ -2978,7 +2980,7 @@ void main(void) {
 
         I2C_Master_Start();
         I2C_Master_Write(0x51);
-        adc = I2C_Master_Read(0);
+        tem1 = I2C_Master_Read(0);
         I2C_Master_Stop();
         _delay((unsigned long)((200)*(8000000/4000.0)));
 
@@ -2990,36 +2992,32 @@ void main(void) {
 
         I2C_Master_Start();
         I2C_Master_Write(0x51);
-        sensor = I2C_Master_Read(0);
+        tem2 = I2C_Master_Read(0);
         I2C_Master_Stop();
         _delay((unsigned long)((200)*(8000000/4000.0)));
-# 139 "Master.c"
-        Lcd_Set_Cursor(2, 1);
-        Lcd_Write_String(lcd1);
-        Lcd_Set_Cursor(2, 5);
-        Lcd_Write_String("V");
+# 140 "Master.c"
+        temp = tem1 << 8;
+        temp = temp + tem2;
 
-        Lcd_Set_Cursor(2, 7);
-        Lcd_Write_String(lcd2);
-        Lcd_Set_Cursor(2, 11);
-        Lcd_Write_String("C");
-
-
-
-
+        volt = (temp/ (float) 1023)*5;
+        temperatura = (volt* (float) 100);
 
         conv1 = 0;
-        conv2 = 0;
 
-        conv1 = (adc / (float) 255)*5;
+        conv1 = temperatura;
 
         convert(lcd1, conv1, 2);
 
-        conv2 = sensor;
-        convert(lcd2, conv2, 2);
 
 
-
+        Lcd_Set_Cursor(2, 1);
+        Lcd_Write_String(lcd1);
+        Lcd_Set_Cursor(2, 6);
+        Lcd_Write_String("C");
+# 168 "Master.c"
+        conv1 = 0;
+        conv2 = 0;
+# 190 "Master.c"
         _delay((unsigned long)((500)*(8000000/4000.0)));
 
     }
