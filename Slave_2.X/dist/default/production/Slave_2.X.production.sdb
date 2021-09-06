@@ -13,11 +13,11 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"39 C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
+"39 C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
 [v _I2C_Master_Wait I2C_Master_Wait `(v  1 e 1 0 ]
 "100
 [v _I2C_Slave_Init I2C_Slave_Init `(v  1 e 1 0 ]
-"71 C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+"71 C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
 [v _isr isr `II(v  1 e 1 0 ]
 "146
 [v _main main `(v  1 e 1 0 ]
@@ -298,7 +298,7 @@
 [v _TRISC3 TRISC3 `VEb  1 e 0 @1083 ]
 "4460
 [v _TRISC4 TRISC4 `VEb  1 e 0 @1084 ]
-"53 C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+"53 C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
 [v _z z `uc  1 e 1 0 ]
 "56
 [v _lec lec `uc  1 e 1 0 ]
@@ -322,7 +322,7 @@
 {
 "271
 } 0
-"100 C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
+"100 C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
 [v _I2C_Slave_Init I2C_Slave_Init `(v  1 e 1 0 ]
 {
 [v I2C_Slave_Init@address address `uc  1 a 1 wreg ]
@@ -331,7 +331,7 @@
 [v I2C_Slave_Init@address address `uc  1 a 1 0 ]
 "112
 } 0
-"71 C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+"71 C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
 [v _isr isr `II(v  1 e 1 0 ]
 {
 "142

@@ -67,12 +67,19 @@ float conv3 = 0;
 uint8_t datos_sensor[3];
 int dato;
 
-char ingreso;
+char cent, dect, unit, cenh, dech, unih;
+char ingreso, posicion, ada;
 //*****************************************************************************
 // Definición de funciones para que se puedan colocar después del main de lo 
 // contrario hay que colocarlos todas las funciones antes del main
 //*****************************************************************************
 void setup(void);
+char centenas (int dato);
+char decenas (int dato);
+char unidades (int dato);
+void USART_Tx(char data);
+char USART_Rx(void);
+void USART_Cadena(char *str);
 
 
 //*****************************************************************************
@@ -122,28 +129,6 @@ void main(void) {
          var_hum = I2C_Master_Read(0);
          I2C_Master_Stop();
          __delay_ms(200);
-//        //Lectura Sensor SHT21
-//        I2C_Master_Start();
-//        I2C_Master_Write(0b10011010);   //Address del sensor TC74
-//        I2C_Master_Write(0x00); //Comando del sensor
-//        __delay_ms(100);
-//        I2C_Master_Stop();
-//        
-//        I2C_Master_Start();
-//        __delay_ms(100);
-//        I2C_Master_Write(0b10011011);
-//        __delay_ms(100);
-//        sensor = I2C_Master_Read(0);
-//        I2C_Master_Stop();
-//        __delay_ms(200);
-        
-        
-//        //Lectura Esclavo 2
-//        I2C_Master_Start();
-//        I2C_Master_Write(0x61);
-//        contador = I2C_Master_Read(0);
-//        I2C_Master_Stop();
-//        __delay_ms(200);
         
         temp = tem1 << 8;
         temp = temp + tem2;
@@ -152,7 +137,6 @@ void main(void) {
         temperatura = (volt* (float) 100);
         
         conv1 = 0;
-//        conv1 = 50;
         
         conv1 = temperatura;
         
@@ -160,7 +144,6 @@ void main(void) {
         //*******************esta parte es del sensor de humedad****************
         conv0 = 0;//se reinicia las cada ves que se inicia el proceso de enviar datos
         conv0 = var_hum; //Se guarda el dato de humedad.     
-//        conv0 = 100;
         convert(humedad, conv0, 2);//se convierte el valor actual a un valor ASCII.
         
         //Mostramos en el LCD los valores de los sensores
@@ -173,41 +156,35 @@ void main(void) {
         Lcd_Write_String(humedad);
         Lcd_Set_Cursor(2, 11);
         Lcd_Write_String("C");
-//        
-//        Lcd_Set_Cursor(2, 14);
-//        Lcd_Write_String(lcd3);
         
-        //Preparación de los sensores para ser mostrados en el LCD
-//        conv1 = 0;//se reinicia las cada ves que se inicia el proceso de enviar datos
-//        conv0 = 0;//tanto para la LCD como por UART.
+        cent = centenas(temperatura); //Separamos el contador en centenas,
+        dect = decenas(temperatura);  //decenas y unidades
+        unit = unidades(temperatura);
+        cent += 48;  //Convertimos a ASCII las variables
+        dect += 48;
+        unit += 48;
         
-//        conv1 = tem1;
-//        conv1 = conv1 + tem2;
-        
-//        conv1 = (conv1/ (float)1023)*500;
-        //maximo que un puerto puede tener, despues se multiplica por 5 para conocer el voltaje actual del puerto                                          
-//        convert(lcd1, conv1, 2);//se convierte el valor actual a un valor ASCII.
-        
-//        conv2 = tem2;
-//        PORTD = tem1;
-//        convert(lcd2, conv2, 2);
-        
-//        temp = tem1 << 8;
-//        temp = temp + tem2;
-//        volt = (temp/(float)1023)*5;
-//        temperatura = (volt*(float)100);
-//        
-//        conv3 = temp; 
-//        convert(lcd1, volt, 2);
+        cenh = centenas(humedad); //Separamos el contador en centenas,
+        dech = decenas(humedad);  //decenas y unidades
+        unih = unidades(humedad);
+        cenh += 48;  //Convertimos a ASCII las variables
+        dech += 48;
+        unih += 48;
         
         if (PIR1bits.RCIF == 1){ //compruebo si se introdujo un dato
             ingreso = USART_Recieve();
             
             if(ingreso == 's'){
-                USART_Transmit(temperatura);
-                USART_Transmit(humedad);
-//                USART_Transmit(unidad); //esta parte es para el sensor de humo
+                USART_Tx(cent);  //temperatura
+                USART_Tx(dect);
+                USART_Tx(unit);
             }
+            else if (ingreso == 'd') {
+                USART_Tx(cenh);  //humedad
+                USART_Tx(dech);
+                USART_Tx(unih);
+            }
+            
         }
         ingreso = 0; //se limpia la variable una vez enviados los datos
         __delay_ms(500);
@@ -240,4 +217,37 @@ void setup(void){
     OSCCONbits.IRCF1 = 1;
     OSCCONbits.IRCF0 = 1;
     OSCCONbits.SCS   = 1;
+}
+
+char centenas (int dato){
+    char out = dato / 100;
+    return out;
+}
+
+char decenas (int dato){
+    char out;
+    out = (dato % 100) / 10;
+    return out;
+}
+
+char unidades (int dato){
+    char out;
+    out = (dato % 100) % 10;
+    return out;
+}
+
+void USART_Tx(char data){       //envio de un caracter
+    while(TXSTAbits.TRMT == 0);
+    TXREG = data;
+}
+
+char USART_Rx(){                //Lectura de comunicacion serial
+    return RCREG; 
+   }
+
+void USART_Cadena(char *str){   //Envio de cadena de caracteres
+    while(*str != '\0'){
+        USART_Tx(*str);
+        str++;
+    }
 }

@@ -23,7 +23,7 @@ intentry CODE 0 4 4 A 2
 bssBANK0 BANK0 1 20 20 7 1
 bssCOMMON COMMON 1 70 70 5 1
 config CONFIG 4 2007 2007 2 2
-$C:\Users\pablo\AppData\Local\Temp\sbvc.o
+$C:\Users\Earst\AppData\Local\Temp\s9ug.o
 reset_vec CODE 0 0 0 3 2
 end_init CODE 0 E E 3 2
 config CONFIG 4 2007 2007 2 2
@@ -73,149 +73,149 @@ STRING 1F2-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\Slave_2.X.production.o
-11 cinit CODE >668:C:\Users\pablo\AppData\Local\Temp\sbvc.s
-11 cinit CODE >671:C:\Users\pablo\AppData\Local\Temp\sbvc.s
-11 cinit CODE >715:C:\Users\pablo\AppData\Local\Temp\sbvc.s
-12 cinit CODE >716:C:\Users\pablo\AppData\Local\Temp\sbvc.s
-13 cinit CODE >717:C:\Users\pablo\AppData\Local\Temp\sbvc.s
-14 cinit CODE >718:C:\Users\pablo\AppData\Local\Temp\sbvc.s
-15 cinit CODE >719:C:\Users\pablo\AppData\Local\Temp\sbvc.s
-16 cinit CODE >722:C:\Users\pablo\AppData\Local\Temp\sbvc.s
-17 cinit CODE >723:C:\Users\pablo\AppData\Local\Temp\sbvc.s
-18 cinit CODE >724:C:\Users\pablo\AppData\Local\Temp\sbvc.s
-19 cinit CODE >725:C:\Users\pablo\AppData\Local\Temp\sbvc.s
-1A cinit CODE >726:C:\Users\pablo\AppData\Local\Temp\sbvc.s
-1B cinit CODE >727:C:\Users\pablo\AppData\Local\Temp\sbvc.s
-1C cinit CODE >728:C:\Users\pablo\AppData\Local\Temp\sbvc.s
-1D cinit CODE >729:C:\Users\pablo\AppData\Local\Temp\sbvc.s
-1E cinit CODE >730:C:\Users\pablo\AppData\Local\Temp\sbvc.s
-1F cinit CODE >736:C:\Users\pablo\AppData\Local\Temp\sbvc.s
-1F cinit CODE >738:C:\Users\pablo\AppData\Local\Temp\sbvc.s
-20 cinit CODE >739:C:\Users\pablo\AppData\Local\Temp\sbvc.s
-4 intentry CODE >71:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-E9 text3 CODE >71:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-E9 text3 CODE >72:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-EF text3 CODE >74:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-F0 text3 CODE >76:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-F8 text3 CODE >77:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-FC text3 CODE >78:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-FD text3 CODE >79:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-FE text3 CODE >80:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-FF text3 CODE >83:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-109 text3 CODE >85:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-10F text3 CODE >87:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-110 text3 CODE >88:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-111 text3 CODE >89:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-117 text3 CODE >90:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-11D text3 CODE >91:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-122 text3 CODE >93:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-123 text3 CODE >94:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-12B text3 CODE >95:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-131 text3 CODE >98:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-132 text3 CODE >100:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-134 text3 CODE >101:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-135 text3 CODE >103:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-137 text3 CODE >104:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-138 text3 CODE >105:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-148 text3 CODE >106:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-149 text3 CODE >107:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-14E text3 CODE >108:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-154 text3 CODE >109:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-154 text3 CODE >111:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-157 text3 CODE >112:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-157 text3 CODE >115:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-15B text3 CODE >116:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-15F text3 CODE >117:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-167 text3 CODE >119:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-168 text3 CODE >142:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-1D6 text2 CODE >100:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
-1D9 text2 CODE >102:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
-1DD text2 CODE >103:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
-1E1 text2 CODE >104:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
-1E5 text2 CODE >105:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
-1E7 text2 CODE >106:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
-1E8 text2 CODE >107:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
-1E9 text2 CODE >108:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
-1EA text2 CODE >109:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
-1EB text2 CODE >110:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
-1EE text2 CODE >111:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
-1F1 text2 CODE >112:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
-171 text1 CODE >210:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-171 text1 CODE >211:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-175 text1 CODE >212:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-176 text1 CODE >214:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-17A text1 CODE >215:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-17B text1 CODE >216:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-17C text1 CODE >218:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-17F text1 CODE >219:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-180 text1 CODE >220:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-181 text1 CODE >221:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-187 text1 CODE >224:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-18A text1 CODE >225:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-18B text1 CODE >226:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-18C text1 CODE >227:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-18D text1 CODE >230:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-18E text1 CODE >231:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-18F text1 CODE >232:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-190 text1 CODE >234:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-193 text1 CODE >237:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-196 text1 CODE >238:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-197 text1 CODE >239:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-198 text1 CODE >241:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-19B text1 CODE >242:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-19D text1 CODE >243:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-1A4 text1 CODE >244:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-1A7 text1 CODE >245:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-1AE text1 CODE >248:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-1B1 text1 CODE >249:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-1B2 text1 CODE >250:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-1B4 text1 CODE >251:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-1B8 text1 CODE >252:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-1BC text1 CODE >253:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-1C0 text1 CODE >255:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-1C2 text1 CODE >256:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-1C4 text1 CODE >257:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-1C6 text1 CODE >258:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-1C7 text1 CODE >259:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-1C8 text1 CODE >262:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-1C9 text1 CODE >263:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-1CB text1 CODE >264:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-1CC text1 CODE >266:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-1D0 text1 CODE >267:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-1D1 text1 CODE >269:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-1D4 text1 CODE >270:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-1D5 text1 CODE >271:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-23 maintext CODE >146:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-23 maintext CODE >147:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-28 maintext CODE >148:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-2B maintext CODE >154:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-2F maintext CODE >156:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-36 maintext CODE >157:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-39 maintext CODE >160:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-43 maintext CODE >161:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-4A maintext CODE >164:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-4E maintext CODE >166:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-53 maintext CODE >168:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-57 maintext CODE >174:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-69 maintext CODE >175:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-6D maintext CODE >176:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-6E maintext CODE >178:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-80 maintext CODE >179:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-84 maintext CODE >180:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-85 maintext CODE >182:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-97 maintext CODE >183:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-9B maintext CODE >184:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-9C maintext CODE >186:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-A5 maintext CODE >187:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-AA maintext CODE >188:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-AB maintext CODE >192:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-AC maintext CODE >193:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-AD maintext CODE >196:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-AF maintext CODE >197:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-B9 maintext CODE >198:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-C9 maintext CODE >200:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-CB maintext CODE >201:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
-D5 maintext CODE >202:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+11 cinit CODE >668:C:\Users\Earst\AppData\Local\Temp\s9ug.s
+11 cinit CODE >671:C:\Users\Earst\AppData\Local\Temp\s9ug.s
+11 cinit CODE >715:C:\Users\Earst\AppData\Local\Temp\s9ug.s
+12 cinit CODE >716:C:\Users\Earst\AppData\Local\Temp\s9ug.s
+13 cinit CODE >717:C:\Users\Earst\AppData\Local\Temp\s9ug.s
+14 cinit CODE >718:C:\Users\Earst\AppData\Local\Temp\s9ug.s
+15 cinit CODE >719:C:\Users\Earst\AppData\Local\Temp\s9ug.s
+16 cinit CODE >722:C:\Users\Earst\AppData\Local\Temp\s9ug.s
+17 cinit CODE >723:C:\Users\Earst\AppData\Local\Temp\s9ug.s
+18 cinit CODE >724:C:\Users\Earst\AppData\Local\Temp\s9ug.s
+19 cinit CODE >725:C:\Users\Earst\AppData\Local\Temp\s9ug.s
+1A cinit CODE >726:C:\Users\Earst\AppData\Local\Temp\s9ug.s
+1B cinit CODE >727:C:\Users\Earst\AppData\Local\Temp\s9ug.s
+1C cinit CODE >728:C:\Users\Earst\AppData\Local\Temp\s9ug.s
+1D cinit CODE >729:C:\Users\Earst\AppData\Local\Temp\s9ug.s
+1E cinit CODE >730:C:\Users\Earst\AppData\Local\Temp\s9ug.s
+1F cinit CODE >736:C:\Users\Earst\AppData\Local\Temp\s9ug.s
+1F cinit CODE >738:C:\Users\Earst\AppData\Local\Temp\s9ug.s
+20 cinit CODE >739:C:\Users\Earst\AppData\Local\Temp\s9ug.s
+4 intentry CODE >71:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+E9 text3 CODE >71:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+E9 text3 CODE >72:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+EF text3 CODE >74:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+F0 text3 CODE >76:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+F8 text3 CODE >77:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+FC text3 CODE >78:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+FD text3 CODE >79:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+FE text3 CODE >80:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+FF text3 CODE >83:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+109 text3 CODE >85:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+10F text3 CODE >87:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+110 text3 CODE >88:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+111 text3 CODE >89:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+117 text3 CODE >90:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+11D text3 CODE >91:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+122 text3 CODE >93:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+123 text3 CODE >94:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+12B text3 CODE >95:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+131 text3 CODE >98:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+132 text3 CODE >100:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+134 text3 CODE >101:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+135 text3 CODE >103:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+137 text3 CODE >104:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+138 text3 CODE >105:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+148 text3 CODE >106:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+149 text3 CODE >107:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+14E text3 CODE >108:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+154 text3 CODE >109:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+154 text3 CODE >111:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+157 text3 CODE >112:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+157 text3 CODE >115:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+15B text3 CODE >116:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+15F text3 CODE >117:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+167 text3 CODE >119:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+168 text3 CODE >142:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+1D6 text2 CODE >100:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
+1D9 text2 CODE >102:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
+1DD text2 CODE >103:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
+1E1 text2 CODE >104:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
+1E5 text2 CODE >105:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
+1E7 text2 CODE >106:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
+1E8 text2 CODE >107:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
+1E9 text2 CODE >108:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
+1EA text2 CODE >109:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
+1EB text2 CODE >110:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
+1EE text2 CODE >111:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
+1F1 text2 CODE >112:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Librerias.c
+171 text1 CODE >210:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+171 text1 CODE >211:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+175 text1 CODE >212:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+176 text1 CODE >214:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+17A text1 CODE >215:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+17B text1 CODE >216:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+17C text1 CODE >218:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+17F text1 CODE >219:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+180 text1 CODE >220:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+181 text1 CODE >221:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+187 text1 CODE >224:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+18A text1 CODE >225:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+18B text1 CODE >226:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+18C text1 CODE >227:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+18D text1 CODE >230:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+18E text1 CODE >231:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+18F text1 CODE >232:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+190 text1 CODE >234:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+193 text1 CODE >237:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+196 text1 CODE >238:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+197 text1 CODE >239:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+198 text1 CODE >241:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+19B text1 CODE >242:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+19D text1 CODE >243:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+1A4 text1 CODE >244:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+1A7 text1 CODE >245:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+1AE text1 CODE >248:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+1B1 text1 CODE >249:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+1B2 text1 CODE >250:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+1B4 text1 CODE >251:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+1B8 text1 CODE >252:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+1BC text1 CODE >253:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+1C0 text1 CODE >255:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+1C2 text1 CODE >256:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+1C4 text1 CODE >257:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+1C6 text1 CODE >258:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+1C7 text1 CODE >259:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+1C8 text1 CODE >262:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+1C9 text1 CODE >263:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+1CB text1 CODE >264:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+1CC text1 CODE >266:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+1D0 text1 CODE >267:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+1D1 text1 CODE >269:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+1D4 text1 CODE >270:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+1D5 text1 CODE >271:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+23 maintext CODE >146:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+23 maintext CODE >147:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+28 maintext CODE >148:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+2B maintext CODE >154:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+2F maintext CODE >156:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+36 maintext CODE >157:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+39 maintext CODE >160:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+43 maintext CODE >161:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+4A maintext CODE >164:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+4E maintext CODE >166:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+53 maintext CODE >168:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+57 maintext CODE >174:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+69 maintext CODE >175:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+6D maintext CODE >176:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+6E maintext CODE >178:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+80 maintext CODE >179:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+84 maintext CODE >180:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+85 maintext CODE >182:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+97 maintext CODE >183:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+9B maintext CODE >184:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+9C maintext CODE >186:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+A5 maintext CODE >187:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+AA maintext CODE >188:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+AB maintext CODE >192:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+AC maintext CODE >193:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+AD maintext CODE >196:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+AF maintext CODE >197:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+B9 maintext CODE >198:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+C9 maintext CODE >200:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+CB maintext CODE >201:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
+D5 maintext CODE >202:C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -238,22 +238,22 @@ __Hspace_4 4010 0 ABS 0 - -
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __Hstrings 0 0 ABS 0 strings -
 _PEIE 5E 0 ABS 0 - dist/default/production\Slave_2.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\pablo\AppData\Local\Temp\sbvc.o
+___sp 0 0 STACK 2 stack C:\Users\Earst\AppData\Local\Temp\s9ug.o
 _lec1 70 0 COMMON 1 bssCOMMON dist/default/production\Slave_2.X.production.o
 _main 46 0 CODE 0 maintext dist/default/production\Slave_2.X.production.o
 _tem1 74 0 COMMON 1 bssCOMMON dist/default/production\Slave_2.X.production.o
 _tem2 21 0 BANK0 1 bssBANK0 dist/default/production\Slave_2.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\Slave_2.X.production.o
-start 1C 0 CODE 0 init C:\Users\pablo\AppData\Local\Temp\sbvc.o
+start 1C 0 CODE 0 init C:\Users\Earst\AppData\Local\Temp\s9ug.o
 __size_of_main 0 0 ABS 0 - dist/default/production\Slave_2.X.production.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\pablo\AppData\Local\Temp\sbvc.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\pablo\AppData\Local\Temp\sbvc.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\pablo\AppData\Local\Temp\sbvc.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\pablo\AppData\Local\Temp\sbvc.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\pablo\AppData\Local\Temp\sbvc.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\pablo\AppData\Local\Temp\sbvc.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\Earst\AppData\Local\Temp\s9ug.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\Earst\AppData\Local\Temp\s9ug.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\Earst\AppData\Local\Temp\s9ug.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\Earst\AppData\Local\Temp\s9ug.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\Earst\AppData\Local\Temp\s9ug.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\Earst\AppData\Local\Temp\s9ug.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 _OSCCONbits 8F 0 ABS 0 - dist/default/production\Slave_2.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\Slave_2.X.production.o
@@ -266,8 +266,8 @@ _SSPCONbits 14 0 ABS 0 - dist/default/production\Slave_2.X.production.o
 _CCPR1L 15 0 ABS 0 - dist/default/production\Slave_2.X.production.o
 _CCPR2L 1B 0 ABS 0 - dist/default/production\Slave_2.X.production.o
 __Lmaintext 0 0 ABS 0 maintext -
-___stackhi 0 0 ABS 0 - C:\Users\pablo\AppData\Local\Temp\sbvc.o
-___stacklo 0 0 ABS 0 - C:\Users\pablo\AppData\Local\Temp\sbvc.o
+___stackhi 0 0 ABS 0 - C:\Users\Earst\AppData\Local\Temp\s9ug.o
+___stacklo 0 0 ABS 0 - C:\Users\Earst\AppData\Local\Temp\s9ug.o
 _I2C_Slave_Init 3AC 0 CODE 0 text2 dist/default/production\Slave_2.X.production.o
 __size_of_setup 0 0 ABS 0 - dist/default/production\Slave_2.X.production.o
 start_initialization 22 0 CODE 0 cinit dist/default/production\Slave_2.X.production.o
@@ -278,7 +278,7 @@ _SSPBUF 13 0 ABS 0 - dist/default/production\Slave_2.X.production.o
 _SSPCON 14 0 ABS 0 - dist/default/production\Slave_2.X.production.o
 _TRISC3 43B 0 ABS 0 - dist/default/production\Slave_2.X.production.o
 _TRISC4 43C 0 ABS 0 - dist/default/production\Slave_2.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\pablo\AppData\Local\Temp\sbvc.o
+___int_sp 0 0 STACK 2 stack C:\Users\Earst\AppData\Local\Temp\s9ug.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -327,7 +327,7 @@ _lec 23 0 BANK0 1 bssBANK0 dist/default/production\Slave_2.X.production.o
 saved_w 7E 0 ABS 0 - dist/default/production\Slave_2.X.production.o
 __end_of_isr 2E2 0 CODE 0 text3 dist/default/production\Slave_2.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\pablo\AppData\Local\Temp\sbvc.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\Earst\AppData\Local\Temp\s9ug.o
 __LbssBANK0 0 0 ABS 0 bssBANK0 -
 _PIE1bits 8C 0 ABS 0 - dist/default/production\Slave_2.X.production.o
 __pmaintext 46 0 CODE 0 maintext dist/default/production\Slave_2.X.production.o
