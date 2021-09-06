@@ -2649,7 +2649,7 @@ typedef int16_t intptr_t;
 
 typedef uint16_t uintptr_t;
 # 13 "./Librerias.h" 2
-# 33 "./Librerias.h"
+# 34 "./Librerias.h"
 void I2C_Master_Init(const unsigned long c);
 
 
@@ -2687,28 +2687,23 @@ unsigned short I2C_Master_Read(unsigned short a);
 
 void I2C_Slave_Init(uint8_t address);
 
-
+void conf_osc(uint8_t frec);
 
 void Lcd_Port(char a);
-
 void Lcd_Cmd(char a);
-
 void Lcd_Clear(void);
-
 void Lcd_Set_Cursor(char a, char b);
-
 void Lcd_Init(void);
-
 void Lcd_Write_Char(char a);
-
 void Lcd_Write_String(char *a);
-
 void Lcd_Shift_Right(void);
-
 void Lcd_Shift_Left(void);
 
 
 void convert(char *data,float a, int place);
+void start_adc(uint8_t frec, uint8_t isr, uint8_t Vref, uint8_t justRL);
+void Select_ch(uint8_t channel);
+void start_ch(uint8_t channel);
 # 39 "Master.c" 2
 
 
@@ -2934,16 +2929,16 @@ extern char * ftoa(float f, int * status);
 # 53 "Master.c"
 volatile uint8_t tem1 = 0;
 volatile uint8_t tem2 = 0;
-volatile uint8_t contador = 0;
+volatile uint8_t var_hum = 0;
 float temp;
 float volt, temperatura;
 
 char lcd1[10];
-char lcd2[10];
+char humedad[10];
 char lcd3[10];
 
 float conv1 = 0;
-float conv2 = 0;
+float conv0 = 0;
 float conv3 = 0;
 
 uint8_t datos_sensor[3];
@@ -2965,9 +2960,9 @@ void main(void) {
     while(1){
 
         Lcd_Set_Cursor(1, 1);
-        Lcd_Write_String("ADC");
+        Lcd_Write_String("TEMP");
         Lcd_Set_Cursor(1, 8);
-        Lcd_Write_String("SEN");
+        Lcd_Write_String("HUM");
         Lcd_Set_Cursor(1, 14);
         Lcd_Write_String("CON");
 
@@ -2995,7 +2990,14 @@ void main(void) {
         tem2 = I2C_Master_Read(0);
         I2C_Master_Stop();
         _delay((unsigned long)((200)*(8000000/4000.0)));
-# 140 "Master.c"
+
+         I2C_Master_Start();
+         I2C_Master_Write(0x11);
+
+         var_hum = I2C_Master_Read(0);
+         I2C_Master_Stop();
+         _delay((unsigned long)((200)*(8000000/4000.0)));
+# 146 "Master.c"
         temp = tem1 << 8;
         temp = temp + tem2;
 
@@ -3004,20 +3006,27 @@ void main(void) {
 
         conv1 = 0;
 
+
         conv1 = temperatura;
 
         convert(lcd1, conv1, 2);
 
+        conv0 = 0;
+        conv0 = var_hum;
+
+        convert(humedad, conv0, 2);
 
 
         Lcd_Set_Cursor(2, 1);
         Lcd_Write_String(lcd1);
         Lcd_Set_Cursor(2, 6);
         Lcd_Write_String("C");
-# 168 "Master.c"
-        conv1 = 0;
-        conv2 = 0;
-# 190 "Master.c"
+
+        Lcd_Set_Cursor(2, 7);
+        Lcd_Write_String(humedad);
+        Lcd_Set_Cursor(2, 11);
+        Lcd_Write_String("C");
+# 201 "Master.c"
         _delay((unsigned long)((500)*(8000000/4000.0)));
 
     }
@@ -3034,7 +3043,8 @@ void setup(void){
     TRISCbits.TRISC1 = 0;
     TRISB = 0x00;
     TRISD = 0x00;
-
+    TRISE = 0x00;
+    PORTE = 0x00;
     PORTB = 0x00;
     PORTD = 0x00;
     I2C_Master_Init(100000);

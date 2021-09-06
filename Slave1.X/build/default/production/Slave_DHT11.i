@@ -2909,7 +2909,50 @@ void DHT11_start(void);
 uint8_t DHT11_response(void);
 void DHT11_ReadData(uint8_t* datos);
 # 34 "Slave_DHT11.c" 2
-# 45 "Slave_DHT11.c"
+
+# 1 "./I2C.h" 1
+# 20 "./I2C.h"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
+# 20 "./I2C.h" 2
+# 29 "./I2C.h"
+void I2C_Master_Init(const unsigned long c);
+
+
+
+
+
+
+
+void I2C_Master_Wait(void);
+
+
+
+void I2C_Master_Start(void);
+
+
+
+void I2C_Master_RepeatedStart(void);
+
+
+
+void I2C_Master_Stop(void);
+
+
+
+
+
+void I2C_Master_Write(unsigned d);
+
+
+
+
+unsigned short I2C_Master_Read(unsigned short a);
+
+
+
+void I2C_Slave_Init(uint8_t address);
+# 35 "Slave_DHT11.c" 2
+# 46 "Slave_DHT11.c"
 uint8_t contador;
 uint8_t Temp1;
 uint8_t dummyT1;
@@ -2920,15 +2963,52 @@ char temperatura[10];
 char humedad[10];
 float conv0 = 0;
 float conv1 = 0;
+uint8_t z;
+uint8_t lectura;
 
 void config(void);
+
+ void __attribute__((picinterrupt(("")))) isr(void){
+
+   if(PIR1bits.SSPIF == 1){
+
+        SSPCONbits.CKP = 0;
+
+        if ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL)){
+            z = SSPBUF;
+            SSPCONbits.SSPOV = 0;
+            SSPCONbits.WCOL = 0;
+            SSPCONbits.CKP = 1;
+
+        }
+
+        if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW) {
+
+            z = SSPBUF;
+
+            PIR1bits.SSPIF = 0;
+            SSPCONbits.CKP = 1;
+            while(!SSPSTATbits.BF);
+            lectura = SSPBUF;
+            _delay((unsigned long)((250)*(8000000/4000000.0)));
+
+        }else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
+            z = SSPBUF;
+            BF = 0;
+            SSPBUF = Hum1;
+            SSPCONbits.CKP = 1;
+            _delay((unsigned long)((250)*(8000000/4000000.0)));
+            while(SSPSTATbits.BF);
+        }
+
+        PIR1bits.SSPIF = 0;
+    }
+ }
 
 
 
 void main(void){
     config();
-    Lcd_Init();
-    Lcd_Clear();
     while(1){
 
         DHT11_start();
@@ -2938,32 +3018,7 @@ void main(void){
             DHT11_ReadData(&Temp1);
             DHT11_ReadData(&dummyT1);
             DHT11_ReadData(&CHECKSUM);
-            PORTD++;
-
-            if(CHECKSUM == ((Hum1 + dummyHum1 + Temp1 + dummyT1) & 0XFF)){
-
-                conv0 = 0;
-                conv1 = 0;
-                conv0 = Hum1;
-                conv1 = Temp1;
-                convert(humedad, conv0, 2);
-                convert(temperatura, conv1, 2);
-
-                Lcd_Set_Cursor(1, 1);
-                Lcd_Write_String("hum:");
-                Lcd_Set_Cursor(1, 8);
-                Lcd_Write_String("Temp:");
-                Lcd_Set_Cursor(2, 1);
-                Lcd_Write_String(humedad);
-                Lcd_Set_Cursor(2, 7);
-                Lcd_Write_String(temperatura);
-
-            }
-            else{
-                Lcd_Clear();
-                Lcd_Set_Cursor(1,1);
-                Lcd_Write_String("error en datos");
-            }
+# 136 "Slave_DHT11.c"
         }
         _delay((unsigned long)((500)*(8000000/4000.0)));
     }
@@ -2981,6 +3036,7 @@ void config(void){
     PORTD = 0X00;
     PORTE = 0x00;
 
+    I2C_Slave_Init(0X10);
 
 
     OSCCONbits.IRCF = 0b111;

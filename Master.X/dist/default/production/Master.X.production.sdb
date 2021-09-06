@@ -29,58 +29,107 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"16 C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Master.X\Librerias.c
+"14 C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Master.X\Librerias.c
 [v _I2C_Master_Init I2C_Master_Init `(v  1 e 1 0 ]
-"32
+"30
 [v _I2C_Master_Wait I2C_Master_Wait `(v  1 e 1 0 ]
-"39
+"37
 [v _I2C_Master_Start I2C_Master_Start `(v  1 e 1 0 ]
-"55
+"53
 [v _I2C_Master_Stop I2C_Master_Stop `(v  1 e 1 0 ]
-"65
+"63
 [v _I2C_Master_Write I2C_Master_Write `(v  1 e 1 0 ]
-"74
+"72
 [v _I2C_Master_Read I2C_Master_Read `(us  1 e 2 0 ]
-"109
+"136
 [v _Lcd_Port Lcd_Port `(v  1 e 1 0 ]
-"113
+"140
 [v _Lcd_Cmd Lcd_Cmd `(v  1 e 1 0 ]
-"121
+"148
 [v _Lcd_Clear Lcd_Clear `(v  1 e 1 0 ]
-"126
+"153
 [v _Lcd_Set_Cursor Lcd_Set_Cursor `(v  1 e 1 0 ]
-"137
+"164
 [v _Lcd_Init Lcd_Init `(v  1 e 1 0 ]
-"151
+"178
 [v _Lcd_Write_Char Lcd_Write_Char `(v  1 e 1 0 ]
-"159
+"186
 [v _Lcd_Write_String Lcd_Write_String `(v  1 e 1 0 ]
-"177
+"202
 [v _convert convert `(v  1 e 1 0 ]
-"79 C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Master.X\Master.c
+"79 C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Master.X\Master.c
 [v _main main `(v  1 e 1 0 ]
-"198
+"209
 [v _setup setup `(v  1 e 1 0 ]
 "228 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
-[s S220 . 1 `uc 1 RC0 1 0 :1:0 
-`uc 1 RC1 1 0 :1:1 
-`uc 1 RC2 1 0 :1:2 
-`uc 1 RC3 1 0 :1:3 
-`uc 1 RC4 1 0 :1:4 
-`uc 1 RC5 1 0 :1:5 
-`uc 1 RC6 1 0 :1:6 
-`uc 1 RC7 1 0 :1:7 
-]
-"307
-[u S229 . 1 `S220 1 . 1 0 ]
-[v _PORTCbits PORTCbits `VES229  1 e 1 @7 ]
 "352
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
+"414
+[v _PORTE PORTE `VEuc  1 e 1 @9 ]
+[s S238 . 1 `uc 1 RE0 1 0 :1:0 
+`uc 1 RE1 1 0 :1:1 
+`uc 1 RE2 1 0 :1:2 
+`uc 1 RE3 1 0 :1:3 
+]
+"427
+[u S243 . 1 `S238 1 . 1 0 ]
+[v _PORTEbits PORTEbits `VES243  1 e 1 @9 ]
+[s S299 . 1 `uc 1 RBIF 1 0 :1:0 
+`uc 1 INTF 1 0 :1:1 
+`uc 1 T0IF 1 0 :1:2 
+`uc 1 RBIE 1 0 :1:3 
+`uc 1 INTE 1 0 :1:4 
+`uc 1 T0IE 1 0 :1:5 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+"482
+[s S308 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 TMR0IF 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 TMR0IE 1 0 :1:5 
+]
+[u S313 . 1 `S299 1 . 1 0 `S308 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES313  1 e 1 @11 ]
+[s S350 . 1 `uc 1 TMR1IF 1 0 :1:0 
+`uc 1 TMR2IF 1 0 :1:1 
+`uc 1 CCP1IF 1 0 :1:2 
+`uc 1 SSPIF 1 0 :1:3 
+`uc 1 TXIF 1 0 :1:4 
+`uc 1 RCIF 1 0 :1:5 
+`uc 1 ADIF 1 0 :1:6 
+]
+"553
+[u S358 . 1 `S350 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES358  1 e 1 @12 ]
 "843
 [v _SSPBUF SSPBUF `VEuc  1 e 1 @19 ]
 "850
 [v _SSPCON SSPCON `VEuc  1 e 1 @20 ]
+[s S253 . 1 `uc 1 ADON 1 0 :1:0 
+`uc 1 GO_nDONE 1 0 :1:1 
+`uc 1 CHS 1 0 :4:2 
+`uc 1 ADCS 1 0 :2:6 
+]
+"1276
+[s S258 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO 1 0 :1:1 
+`uc 1 CHS0 1 0 :1:2 
+`uc 1 CHS1 1 0 :1:3 
+`uc 1 CHS2 1 0 :1:4 
+`uc 1 CHS3 1 0 :1:5 
+`uc 1 ADCS0 1 0 :1:6 
+`uc 1 ADCS1 1 0 :1:7 
+]
+[s S267 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 nDONE 1 0 :1:1 
+]
+[s S270 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO_DONE 1 0 :1:1 
+]
+[u S273 . 1 `S253 1 . 1 0 `S258 1 . 1 0 `S267 1 . 1 0 `S270 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES273  1 e 1 @31 ]
 "1478
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
 [s S78 . 1 `uc 1 TRISC0 1 0 :1:0 
@@ -97,23 +146,36 @@
 [v _TRISCbits TRISCbits `VES87  1 e 1 @135 ]
 "1602
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
-[s S108 . 1 `uc 1 SCS 1 0 :1:0 
+"1664
+[v _TRISE TRISE `VEuc  1 e 1 @137 ]
+[s S331 . 1 `uc 1 TMR1IE 1 0 :1:0 
+`uc 1 TMR2IE 1 0 :1:1 
+`uc 1 CCP1IE 1 0 :1:2 
+`uc 1 SSPIE 1 0 :1:3 
+`uc 1 TXIE 1 0 :1:4 
+`uc 1 RCIE 1 0 :1:5 
+`uc 1 ADIE 1 0 :1:6 
+]
+"1718
+[u S339 . 1 `S331 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES339  1 e 1 @140 ]
+[s S110 . 1 `uc 1 SCS 1 0 :1:0 
 `uc 1 LTS 1 0 :1:1 
 `uc 1 HTS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 ]
 "1882
-[s S114 . 1 `uc 1 . 1 0 :4:0 
+[s S116 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 IRCF0 1 0 :1:4 
 `uc 1 IRCF1 1 0 :1:5 
 `uc 1 IRCF2 1 0 :1:6 
 ]
-[u S119 . 1 `S108 1 . 1 0 `S114 1 . 1 0 ]
-[v _OSCCONbits OSCCONbits `VES119  1 e 1 @143 ]
+[u S121 . 1 `S110 1 . 1 0 `S116 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES121  1 e 1 @143 ]
 "1979
 [v _SSPCON2 SSPCON2 `VEuc  1 e 1 @145 ]
-[s S191 . 1 `uc 1 SEN 1 0 :1:0 
+[s S194 . 1 `uc 1 SEN 1 0 :1:0 
 `uc 1 RSEN 1 0 :1:1 
 `uc 1 PEN 1 0 :1:2 
 `uc 1 RCEN 1 0 :1:3 
@@ -123,16 +185,47 @@
 `uc 1 GCEN 1 0 :1:7 
 ]
 "1996
-[u S200 . 1 `S191 1 . 1 0 ]
-[v _SSPCON2bits SSPCON2bits `VES200  1 e 1 @145 ]
+[u S203 . 1 `S194 1 . 1 0 ]
+[v _SSPCON2bits SSPCON2bits `VES203  1 e 1 @145 ]
 "2048
 [v _SSPADD SSPADD `VEuc  1 e 1 @147 ]
 "2177
 [v _SSPSTAT SSPSTAT `VEuc  1 e 1 @148 ]
+[s S369 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 VCFG0 1 0 :1:4 
+`uc 1 VCFG1 1 0 :1:5 
+`uc 1 . 1 0 :1:6 
+`uc 1 ADFM 1 0 :1:7 
+]
+"2991
+[u S375 . 1 `S369 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES375  1 e 1 @159 ]
 "3387
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
+[s S384 . 1 `uc 1 ANS0 1 0 :1:0 
+`uc 1 ANS1 1 0 :1:1 
+`uc 1 ANS2 1 0 :1:2 
+`uc 1 ANS3 1 0 :1:3 
+`uc 1 ANS4 1 0 :1:4 
+`uc 1 ANS5 1 0 :1:5 
+`uc 1 ANS6 1 0 :1:6 
+`uc 1 ANS7 1 0 :1:7 
+]
+"3404
+[u S393 . 1 `S384 1 . 1 0 ]
+[v _ANSELbits ANSELbits `VES393  1 e 1 @392 ]
 "3449
 [v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
+[s S405 . 1 `uc 1 ANS8 1 0 :1:0 
+`uc 1 ANS9 1 0 :1:1 
+`uc 1 ANS10 1 0 :1:2 
+`uc 1 ANS11 1 0 :1:3 
+`uc 1 ANS12 1 0 :1:4 
+`uc 1 ANS13 1 0 :1:5 
+]
+"3464
+[u S412 . 1 `S405 1 . 1 0 ]
+[v _ANSELHbits ANSELHbits `VES412  1 e 1 @393 ]
 "3896
 [v _GIE GIE `VEb  1 e 0 @95 ]
 "4040
@@ -145,12 +238,12 @@
 [v _TRISC3 TRISC3 `VEb  1 e 0 @1083 ]
 "4460
 [v _TRISC4 TRISC4 `VEb  1 e 0 @1084 ]
-"53 C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Master.X\Master.c
+"53 C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Master.X\Master.c
 [v _tem1 tem1 `VEuc  1 e 1 0 ]
 "54
 [v _tem2 tem2 `VEuc  1 e 1 0 ]
 "55
-[v _contador contador `VEuc  1 e 1 0 ]
+[v _var_hum var_hum `VEuc  1 e 1 0 ]
 "56
 [v _temp temp `f  1 e 4 0 ]
 "57
@@ -158,25 +251,27 @@
 [v _temperatura temperatura `f  1 e 4 0 ]
 "59
 [v _lcd1 lcd1 `[10]uc  1 e 10 0 ]
+"60
+[v _humedad humedad `[10]uc  1 e 10 0 ]
 "63
 [v _conv1 conv1 `f  1 e 4 0 ]
 "64
-[v _conv2 conv2 `f  1 e 4 0 ]
+[v _conv0 conv0 `f  1 e 4 0 ]
 "79
 [v _main main `(v  1 e 1 0 ]
 {
-"194
+"205
 } 0
-"198
+"209
 [v _setup setup `(v  1 e 1 0 ]
 {
-"216
+"228
 } 0
-"16 C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Master.X\Librerias.c
+"14 C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Master.X\Librerias.c
 [v _I2C_Master_Init I2C_Master_Init `(v  1 e 1 0 ]
 {
 [v I2C_Master_Init@c c `DCul  1 p 4 0 ]
-"24
+"22
 } 0
 "5 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
 [v ___lldiv __lldiv `(ul  1 e 4 0 ]
@@ -190,29 +285,29 @@
 [v ___lldiv@dividend dividend `ul  1 p 4 4 ]
 "30
 } 0
-"177 C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Master.X\Librerias.c
+"202 C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Master.X\Librerias.c
 [v _convert convert `(v  1 e 1 0 ]
 {
 [v convert@data data `*.4uc  1 a 1 wreg ]
-"180
+"205
 [v convert@x x `f  1 a 4 5 ]
-"182
+"207
 [v convert@mu mu `i  1 a 2 13 ]
-"181
+"206
 [v convert@digits digits `i  1 a 2 11 ]
-"182
+"207
 [v convert@i i `i  1 a 2 9 ]
-"183
+"208
 [v convert@j j `i  1 a 2 2 ]
-"179
+"204
 [v convert@temp temp `i  1 a 2 0 ]
-"177
+"202
 [v convert@data data `*.4uc  1 a 1 wreg ]
 [v convert@a a `f  1 p 4 72 ]
 [v convert@place place `i  1 p 2 76 ]
-"179
+"204
 [v convert@data data `*.4uc  1 a 1 4 ]
-"233
+"258
 } 0
 "10 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\xxtofl.c
 [v ___xxtofl __xxtofl `(d  1 e 4 0 ]
@@ -275,17 +370,17 @@
 "8 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\sprcmul.c
 [v ___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S597 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S814 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
 "13
-[s S602 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S605 . 4 `l 1 i 4 0 `d 1 f 4 0 `S597 1 fAsBytes 4 0 `S602 1 fAsWords 4 0 ]
-[v ___flmul@prod prod `S605  1 a 4 66 ]
+[s S819 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S822 . 4 `l 1 i 4 0 `d 1 f 4 0 `S814 1 fAsBytes 4 0 `S819 1 fAsWords 4 0 ]
+[v ___flmul@prod prod `S822  1 a 4 66 ]
 "12
 [v ___flmul@grs grs `ul  1 a 4 60 ]
-[s S674 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[s S891 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
 "14
-[u S677 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S674 1 nAsBytes 2 0 ]
-[v ___flmul@temp temp `S677  1 a 2 70 ]
+[u S894 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S891 1 nAsBytes 2 0 ]
+[v ___flmul@temp temp `S894  1 a 2 70 ]
 "10
 [v ___flmul@bexp bexp `uc  1 a 1 65 ]
 "11
@@ -351,89 +446,89 @@
 [v ___awdiv@dividend dividend `i  1 p 2 2 ]
 "41
 } 0
-"159 C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Master.X\Librerias.c
+"186 C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Master.X\Librerias.c
 [v _Lcd_Write_String Lcd_Write_String `(v  1 e 1 0 ]
 {
-"160
+"187
 [v Lcd_Write_String@i i `i  1 a 2 8 ]
-"159
+"186
 [v Lcd_Write_String@a a `*.26uc  1 p 2 3 ]
-"163
+"190
 } 0
-"151
+"178
 [v _Lcd_Write_Char Lcd_Write_Char `(v  1 e 1 0 ]
 {
 [v Lcd_Write_Char@a a `uc  1 a 1 wreg ]
 [v Lcd_Write_Char@a a `uc  1 a 1 wreg ]
 [v Lcd_Write_Char@a a `uc  1 a 1 2 ]
-"157
+"184
 } 0
-"126
+"153
 [v _Lcd_Set_Cursor Lcd_Set_Cursor `(v  1 e 1 0 ]
 {
 [v Lcd_Set_Cursor@a a `uc  1 a 1 wreg ]
-"127
+"154
 [v Lcd_Set_Cursor@temp temp `uc  1 a 1 7 ]
-"126
+"153
 [v Lcd_Set_Cursor@a a `uc  1 a 1 wreg ]
 [v Lcd_Set_Cursor@b b `uc  1 p 1 4 ]
-"128
+"155
 [v Lcd_Set_Cursor@a a `uc  1 a 1 6 ]
-"135
+"162
 } 0
-"137
+"164
 [v _Lcd_Init Lcd_Init `(v  1 e 1 0 ]
 {
-"149
+"176
 } 0
-"121
+"148
 [v _Lcd_Clear Lcd_Clear `(v  1 e 1 0 ]
 {
-"124
+"151
 } 0
-"113
+"140
 [v _Lcd_Cmd Lcd_Cmd `(v  1 e 1 0 ]
 {
 [v Lcd_Cmd@a a `uc  1 a 1 wreg ]
 [v Lcd_Cmd@a a `uc  1 a 1 wreg ]
 [v Lcd_Cmd@a a `uc  1 a 1 3 ]
-"119
+"146
 } 0
-"109
+"136
 [v _Lcd_Port Lcd_Port `(v  1 e 1 0 ]
 {
 [v Lcd_Port@a a `uc  1 a 1 wreg ]
 [v Lcd_Port@a a `uc  1 a 1 wreg ]
 [v Lcd_Port@a a `uc  1 a 1 0 ]
-"111
+"138
 } 0
-"65
+"63
 [v _I2C_Master_Write I2C_Master_Write `(v  1 e 1 0 ]
 {
 [v I2C_Master_Write@d d `ui  1 p 2 0 ]
-"69
+"67
 } 0
-"55
+"53
 [v _I2C_Master_Stop I2C_Master_Stop `(v  1 e 1 0 ]
 {
-"59
+"57
 } 0
-"39
+"37
 [v _I2C_Master_Start I2C_Master_Start `(v  1 e 1 0 ]
 {
-"43
+"41
 } 0
-"74
+"72
 [v _I2C_Master_Read I2C_Master_Read `(us  1 e 2 0 ]
 {
-"76
-[v I2C_Master_Read@temp temp `us  1 a 2 4 ]
 "74
+[v I2C_Master_Read@temp temp `us  1 a 2 4 ]
+"72
 [v I2C_Master_Read@a a `us  1 p 2 0 ]
-"89
+"87
 } 0
-"32
+"30
 [v _I2C_Master_Wait I2C_Master_Wait `(v  1 e 1 0 ]
 {
-"35
+"33
 } 0

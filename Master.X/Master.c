@@ -52,16 +52,16 @@
 //****************************************************************************
 volatile uint8_t tem1 = 0;
 volatile uint8_t tem2 = 0;
-volatile uint8_t contador = 0;
+volatile uint8_t var_hum = 0;
 float temp;
 float volt, temperatura;
 
 char lcd1[10];
-char lcd2[10];
+char humedad[10];
 char lcd3[10];
 
 float conv1 = 0;
-float conv2 = 0;
+float conv0 = 0;
 float conv3 = 0;
 
 uint8_t datos_sensor[3];
@@ -83,9 +83,9 @@ void main(void) {
     while(1){
         //Primera linea del LCD
         Lcd_Set_Cursor(1, 1);
-        Lcd_Write_String("ADC");
+        Lcd_Write_String("TEMP");
         Lcd_Set_Cursor(1, 8);
-        Lcd_Write_String("SEN");
+        Lcd_Write_String("HUM");
         Lcd_Set_Cursor(1, 14);
         Lcd_Write_String("CON");
         
@@ -114,6 +114,12 @@ void main(void) {
         I2C_Master_Stop();
         __delay_ms(200);
         
+         I2C_Master_Start();
+         I2C_Master_Write(0x11); //va a esclavo con direccion 0x10 y le dice que
+                                 //va a leer
+         var_hum = I2C_Master_Read(0);
+         I2C_Master_Stop();
+         __delay_ms(200);
 //        //Lectura Sensor SHT21
 //        I2C_Master_Start();
 //        I2C_Master_Write(0b10011010);   //Address del sensor TC74
@@ -144,11 +150,16 @@ void main(void) {
         temperatura = (volt* (float) 100);
         
         conv1 = 0;
+//        conv1 = 50;
         
         conv1 = temperatura;
         
         convert(lcd1, conv1, 2);//
         
+        conv0 = 0;//se reinicia las cada ves que se inicia el proceso de enviar datos
+        conv0 = var_hum; //Se guarda el dato de humedad.     
+//        conv0 = 100;
+        convert(humedad, conv0, 2);//se convierte el valor actual a un valor ASCII.
         
         //Mostramos en el LCD los valores de los sensores
         Lcd_Set_Cursor(2, 1);             //Elegimos posicion
@@ -156,17 +167,17 @@ void main(void) {
         Lcd_Set_Cursor(2, 6);             //Nueva posicion
         Lcd_Write_String("C");            //Dimensional del sensor
         
-//        Lcd_Set_Cursor(2, 7);
-//        Lcd_Write_String(lcd2);
-//        Lcd_Set_Cursor(2, 11);
-//        Lcd_Write_String("C");
+        Lcd_Set_Cursor(2, 7);
+        Lcd_Write_String(humedad);
+        Lcd_Set_Cursor(2, 11);
+        Lcd_Write_String("C");
 //        
 //        Lcd_Set_Cursor(2, 14);
 //        Lcd_Write_String(lcd3);
         
         //Preparación de los sensores para ser mostrados en el LCD
-        conv1 = 0;//se reinicia las cada ves que se inicia el proceso de enviar datos
-        conv2 = 0;//tanto para la LCD como por UART.
+//        conv1 = 0;//se reinicia las cada ves que se inicia el proceso de enviar datos
+//        conv0 = 0;//tanto para la LCD como por UART.
         
 //        conv1 = tem1;
 //        conv1 = conv1 + tem2;
@@ -203,7 +214,8 @@ void setup(void){
     TRISCbits.TRISC1 = 0;
     TRISB = 0x00;
     TRISD = 0x00;
-    
+    TRISE = 0x00;
+    PORTE = 0x00;
     PORTB = 0x00;
     PORTD = 0x00;
     I2C_Master_Init(100000);        // Inicializar Comuncación I2C

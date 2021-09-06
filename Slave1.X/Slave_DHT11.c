@@ -32,12 +32,13 @@
 #include "LCD.h"
 #include "ADC.h"
 #include "DHT11.h"
+#include "I2C.h"
 
 
 //*******************************definiciones***********************************
 #define _XTAL_FREQ 8000000 
-#define DHT11_PIN PORTAbits.RA0 
-#define DHT11_PIN_Direction TRISAbits.TRISA0
+#define DHT11_PIN PORTAbits.RA1 
+#define DHT11_PIN_Direction TRISAbits.TRISA1
 //******************************************************************************
 //  variables y prototipos
 //******************************************************************************
@@ -52,15 +53,52 @@ char temperatura[10];
 char humedad[10];
 float conv0 = 0;
 float conv1 = 0;
+uint8_t z;
+uint8_t lectura;
 //************************************prototipos********************************
 void config(void);
+//********************************Interrupciones*******************************
+ void __interrupt() isr(void){
+ //--------------------------------interrupion I2C------------------------------    
+   if(PIR1bits.SSPIF == 1){ 
+        
+        SSPCONbits.CKP = 0;
+       
+        if ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL)){
+            z = SSPBUF;                 // Read the previous value to clear the buffer
+            SSPCONbits.SSPOV = 0;       // Clear the overflow flag
+            SSPCONbits.WCOL = 0;        // Clear the collision bit
+            SSPCONbits.CKP = 1;         // Enables SCL (Clock)
+            
+        }
+//----------------------------hacer al esclavo leer-----------------------------
+        if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW) {
+            //__delay_us(7);
+            z = SSPBUF;                 // Lectura del SSBUF para limpiar el buffer y la bandera BF
+            //__delay_us(2);
+            PIR1bits.SSPIF = 0;         // Limpia bandera de interrupción recepción/transmisión SSP
+            SSPCONbits.CKP = 1;         // Habilita entrada de pulsos de reloj SCL
+            while(!SSPSTATbits.BF);     // Esperar a que la recepción se complete
+            lectura = SSPBUF;             // Guardar en el PORTD el valor del buffer de recepción
+            __delay_us(250);
+//------------------------------rl esclavo manda datos--------------------------         
+        }else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
+            z = SSPBUF;
+            BF = 0;
+            SSPBUF = Hum1; //manda el la conversion del ADC
+            SSPCONbits.CKP = 1;
+            __delay_us(250);
+            while(SSPSTATbits.BF);
+        }
+       
+        PIR1bits.SSPIF = 0;    
+    }
+ }
 //******************************************************************************
 //  funciones y loop principal
 //******************************************************************************
 void main(void){
     config();
-    Lcd_Init();
-    Lcd_Clear();
     while(1){
         
         DHT11_start();
@@ -70,32 +108,31 @@ void main(void){
             DHT11_ReadData(&Temp1);
             DHT11_ReadData(&dummyT1);
             DHT11_ReadData(&CHECKSUM);
-            PORTD++;
             
-            if(CHECKSUM == ((Hum1 + dummyHum1 + Temp1 + dummyT1) & 0XFF)){ 
-                //se revisa si los datos que se pasaron fueron los correctos
-                conv0 = 0;
-                conv1 = 0;
-                conv0 = Hum1; 
-                conv1 = Temp1;
-                convert(humedad, conv0, 2); //se convierte el valor actual a un valor ASCII.
-                convert(temperatura, conv1, 2);
-  
-                Lcd_Set_Cursor(1, 1); //primeras cordenadas de la pantalla
-                Lcd_Write_String("hum:"); //se escribe en la pantalla
-                Lcd_Set_Cursor(1, 8); //nos despalazamos en la pantalla
-                Lcd_Write_String("Temp:"); //se escribe de nuevo
-                Lcd_Set_Cursor(2, 1);
-                Lcd_Write_String(humedad);
-                Lcd_Set_Cursor(2, 7);
-                Lcd_Write_String(temperatura);
-                //los datos pasaron exitsamentee
-            }
-            else{ //si el dato no es correcto se avisa al usuario
-                Lcd_Clear();
-                Lcd_Set_Cursor(1,1);
-                Lcd_Write_String("error en datos");  
-            }
+//            if(CHECKSUM == ((Hum1 + dummyHum1 + Temp1 + dummyT1) & 0XFF)){ 
+//                //se revisa si los datos que se pasaron fueron los correctos
+//                conv0 = 0;
+//                conv1 = 0;
+//                conv0 = Hum1; 
+//                conv1 = Temp1;
+//                convert(humedad, conv0, 2); //se convierte el valor actual a un valor ASCII.
+//                convert(temperatura, conv1, 2);
+//  
+//                Lcd_Set_Cursor(1, 1); //primeras cordenadas de la pantalla
+//                Lcd_Write_String("hum:"); //se escribe en la pantalla
+//                Lcd_Set_Cursor(1, 8); //nos despalazamos en la pantalla
+//                Lcd_Write_String("Temp:"); //se escribe de nuevo
+//                Lcd_Set_Cursor(2, 1);
+//                Lcd_Write_String(humedad);
+//                Lcd_Set_Cursor(2, 7);
+//                Lcd_Write_String(temperatura);
+//                //los datos pasaron exitsamentee
+//            }
+//            else{ //si el dato no es correcto se avisa al usuario
+//                Lcd_Clear();
+//                Lcd_Set_Cursor(1,1);
+//                Lcd_Write_String("error en datos");  
+//            }
         }
         __delay_ms(500);
     }
@@ -113,7 +150,8 @@ void config(void){
     PORTD =     0X00;
     PORTE =     0x00;
  
-    
+    I2C_Slave_Init(0X10); //inicializar comunicación I2C del esclavo y se le da
+     //dirección al esclavo, en este caso 0x50
     //Configuracion del oscilador
     OSCCONbits.IRCF = 0b111; //oscilador a 8Mhz
     OSCCONbits.SCS = 0b1;

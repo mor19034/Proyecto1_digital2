@@ -14,9 +14,9 @@
 #include "DHT11.h"
 #define _XTAL_FREQ 8000000 //utilizado para los delays
 
-#define DHT11_PIN RA0 //puerto que se usará para comunicarse con 
+#define DHT11_PIN RA1 //puerto que se usará para comunicarse con 
                                 //el sensor
-#define DHT11_PIN_T TRISAbits.TRISA0 //esto servirá para cambiar entre entrada y   
+#define DHT11_PIN_T TRISAbits.TRISA1 //esto servirá para cambiar entre entrada y   
                                 //salida digital el pin que se utilizará
 
 int bits[5]; //esto es una cadena donde se van a almacenar los 5 bytes que se

@@ -2633,7 +2633,7 @@ typedef int16_t intptr_t;
 
 typedef uint16_t uintptr_t;
 # 13 "./Librerias.h" 2
-# 33 "./Librerias.h"
+# 34 "./Librerias.h"
 void I2C_Master_Init(const unsigned long c);
 
 
@@ -2671,133 +2671,26 @@ unsigned short I2C_Master_Read(unsigned short a);
 
 void I2C_Slave_Init(uint8_t address);
 
-
+void conf_osc(uint8_t frec);
 
 void Lcd_Port(char a);
-
 void Lcd_Cmd(char a);
-
 void Lcd_Clear(void);
-
 void Lcd_Set_Cursor(char a, char b);
-
 void Lcd_Init(void);
-
 void Lcd_Write_Char(char a);
-
 void Lcd_Write_String(char *a);
-
 void Lcd_Shift_Right(void);
-
 void Lcd_Shift_Left(void);
 
 
 void convert(char *data,float a, int place);
+void start_adc(uint8_t frec, uint8_t isr, uint8_t Vref, uint8_t justRL);
+void Select_ch(uint8_t channel);
+void start_ch(uint8_t channel);
 # 8 "Librerias.c" 2
 
 
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
-# 11 "Librerias.c" 2
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 1 3
-
-
-
-# 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\__size_t.h" 1 3
-
-
-
-typedef unsigned size_t;
-# 4 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
-
-# 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\__null.h" 1 3
-# 5 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
-
-
-
-
-
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdarg.h" 1 3
-
-
-
-
-
-
-typedef void * va_list[1];
-
-#pragma intrinsic(__va_start)
-extern void * __va_start(void);
-
-#pragma intrinsic(__va_arg)
-extern void * __va_arg(void *, ...);
-# 11 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
-# 43 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 3
-struct __prbuf
-{
- char * ptr;
- void (* func)(char);
-};
-# 85 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 3
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\conio.h" 1 3
-
-
-
-
-
-
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\errno.h" 1 3
-# 29 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\errno.h" 3
-extern int errno;
-# 8 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\conio.h" 2 3
-
-
-
-
-extern void init_uart(void);
-
-extern char getch(void);
-extern char getche(void);
-extern void putch(char);
-extern void ungetch(char);
-
-extern __bit kbhit(void);
-
-
-
-extern char * cgets(char *);
-extern void cputs(const char *);
-# 85 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
-
-
-
-extern int cprintf(char *, ...);
-#pragma printf_check(cprintf)
-
-
-
-extern int _doprnt(struct __prbuf *, const register char *, register va_list);
-# 180 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 3
-#pragma printf_check(vprintf) const
-#pragma printf_check(vsprintf) const
-
-extern char * gets(char *);
-extern int puts(const char *);
-extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
-extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
-extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
-extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
-extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
-extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
-
-#pragma printf_check(printf) const
-#pragma printf_check(sprintf) const
-extern int sprintf(char *, const char *, ...);
-extern int printf(const char *, ...);
-# 12 "Librerias.c" 2
 
 
 
@@ -2806,7 +2699,7 @@ void I2C_Master_Init(const unsigned long c)
 {
     SSPCON = 0b00101000;
     SSPCON2 = 0;
-    SSPADD = (4000000/(4*c))-1;
+    SSPADD = (8000000/(4*c))-1;
     SSPSTAT = 0;
     TRISCbits.TRISC3 = 1;
     TRISCbits.TRISC4 = 1;
@@ -2893,6 +2786,35 @@ void I2C_Slave_Init(uint8_t address)
     SSPIE = 1;
 }
 
+void conf_osc(uint8_t frec){
+    switch(frec){
+        case 0:
+            OSCCONbits.IRCF = 000;
+            break;
+        case 1:
+            OSCCONbits.IRCF = 001;
+            break;
+        case 2:
+            OSCCONbits.IRCF = 010;
+            break;
+        case 3:
+            OSCCONbits.IRCF = 011;
+            break;
+        case 4:
+            OSCCONbits.IRCF = 100;
+            break;
+        case 5:
+            OSCCONbits.IRCF = 101;
+            break;
+        case 7:
+            OSCCONbits.IRCF = 111;
+            break;
+        default:
+            OSCCONbits.IRCF = 110;
+            break;
+    }
+    OSCCONbits.SCS = 1;
+}
 
 
 void Lcd_Port(char a) {
@@ -2900,11 +2822,11 @@ void Lcd_Port(char a) {
 }
 
 void Lcd_Cmd(char a) {
-    PORTCbits.RC0 = 0;
+    PORTEbits.RE0 = 0;
     Lcd_Port(a);
-    PORTCbits.RC1 = 1;
-    _delay((unsigned long)((4)*(4000000/4000.0)));
-    PORTCbits.RC1 = 0;
+    PORTEbits.RE2 = 1;
+    _delay((unsigned long)((4)*(8000000/4000.0)));
+    PORTEbits.RE2 = 0;
 }
 
 void Lcd_Clear(void) {
@@ -2925,24 +2847,24 @@ void Lcd_Set_Cursor(char a, char b) {
 
 void Lcd_Init(void) {
     Lcd_Port(0x00);
-    _delay((unsigned long)((20)*(4000000/4000.0)));
+    _delay((unsigned long)((20)*(8000000/4000.0)));
     Lcd_Cmd(0x30);
-    _delay((unsigned long)((5)*(4000000/4000.0)));
+    _delay((unsigned long)((5)*(8000000/4000.0)));
     Lcd_Cmd(0x30);
-    _delay((unsigned long)((11)*(4000000/4000.0)));
+    _delay((unsigned long)((11)*(8000000/4000.0)));
     Lcd_Cmd(0x30);
 
     Lcd_Cmd(0x38);
     Lcd_Cmd(0x0C);
-    Lcd_Cmd(0x6);
+    Lcd_Cmd(0x06);
 }
 
 void Lcd_Write_Char(char a) {
-    PORTCbits.RC0 = 1;
+    PORTEbits.RE0 = 1;
     Lcd_Port(a);
-    PORTCbits.RC1 = 1;
-    _delay((unsigned long)((10)*(4000000/4000000.0)));
-    PORTCbits.RC1 = 0;
+    PORTEbits.RE2 = 1;
+    _delay((unsigned long)((10)*(8000000/4000000.0)));
+    PORTEbits.RE2 = 0;
 }
 
 void Lcd_Write_String(char *a) {
@@ -2960,8 +2882,6 @@ void Lcd_Shift_Left(void) {
     Lcd_Cmd(0x01);
     Lcd_Cmd(0x08);
 }
-
-
 
 void convert(char *data,float a, int place)
 {
@@ -3019,4 +2939,209 @@ void convert(char *data,float a, int place)
      }
 
     data[i]='\n';
+}
+
+void start_adc(uint8_t frec, uint8_t isr, uint8_t Vref, uint8_t justRL) {
+    ADCON0bits.ADON = 1;
+    _delay((unsigned long)((200)*(8000000/4000000.0)));
+    switch (frec) {
+        case 1:
+            ADCON0bits.ADCS0 = 0;
+            ADCON0bits.ADCS1 = 0;
+            break;
+        case 2:
+            ADCON0bits.ADCS0 = 1;
+            ADCON0bits.ADCS1 = 0;
+            break;
+        case 3:
+            ADCON0bits.ADCS0 = 0;
+            ADCON0bits.ADCS1 = 1;
+            break;
+        case 4:
+            ADCON0bits.ADCS0 = 1;
+            ADCON0bits.ADCS1 = 1;
+            break;
+    }
+    if (isr == 1) {
+        INTCONbits.GIE = 1;
+        INTCONbits.PEIE = 1;
+        PIE1bits.ADIE = 1;
+        PIR1bits.ADIF = 0;
+    }
+    if (justRL == 0) {
+        ADCON1bits.ADFM = 0;
+    } else {
+        ADCON1bits.ADFM = 1;
+    }
+    switch (Vref) {
+        case 0:
+            ADCON1bits.VCFG0 = 0;
+            ADCON1bits.VCFG1 = 0;
+            break;
+        case 1:
+            ADCON1bits.VCFG0 = 1;
+            ADCON1bits.VCFG1 = 0;
+            break;
+        case 2:
+            ADCON1bits.VCFG0 = 0;
+            ADCON1bits.VCFG1 = 1;
+            break;
+        case 3:
+            ADCON1bits.VCFG0 = 1;
+            ADCON1bits.VCFG1 = 1;
+            break;
+    }
+}
+
+
+void start_ch(uint8_t channel) {
+    switch (channel) {
+        case 0:
+            ANSELbits.ANS0 = 1;
+            break;
+        case 1:
+            ANSELbits.ANS1 = 1;
+            break;
+        case 2:
+            ANSELbits.ANS2 = 1;
+            break;
+        case 3:
+            ANSELbits.ANS3 = 1;
+            break;
+        case 4:
+            ANSELbits.ANS4 = 1;
+            break;
+        case 5:
+            ANSELbits.ANS5 = 1;
+            break;
+        case 6:
+            ANSELbits.ANS6 = 1;
+            break;
+        case 7:
+            ANSELbits.ANS7 = 1;
+            break;
+        case 8:
+            ANSELHbits.ANS8 = 1;
+            break;
+        case 9:
+            ANSELHbits.ANS9 = 1;
+            break;
+        case 10:
+            ANSELHbits.ANS10 = 1;
+            break;
+        case 11:
+            ANSELHbits.ANS11 = 1;
+            break;
+        case 12:
+            ANSELHbits.ANS12 = 1;
+            break;
+        case 13:
+            ANSELHbits.ANS13 = 1;
+            break;
+    }
+}
+
+
+
+void Select_ch(uint8_t channel) {
+    switch (channel) {
+        case 0:
+            ADCON0bits.CHS0 = 0;
+            ADCON0bits.CHS1 = 0;
+            ADCON0bits.CHS2 = 0;
+            ADCON0bits.CHS3 = 0;
+            break;
+        case 1:
+            ADCON0bits.CHS0 = 1;
+            ADCON0bits.CHS1 = 0;
+            ADCON0bits.CHS2 = 0;
+            ADCON0bits.CHS3 = 0;
+            break;
+        case 2:
+            ADCON0bits.CHS0 = 0;
+            ADCON0bits.CHS1 = 1;
+            ADCON0bits.CHS2 = 0;
+            ADCON0bits.CHS3 = 0;
+            break;
+        case 3:
+            ADCON0bits.CHS0 = 1;
+            ADCON0bits.CHS1 = 1;
+            ADCON0bits.CHS2 = 0;
+            ADCON0bits.CHS3 = 0;
+            break;
+        case 4:
+            ADCON0bits.CHS0 = 0;
+            ADCON0bits.CHS1 = 0;
+            ADCON0bits.CHS2 = 1;
+            ADCON0bits.CHS3 = 0;
+            break;
+        case 5:
+            ADCON0bits.CHS0 = 1;
+            ADCON0bits.CHS1 = 0;
+            ADCON0bits.CHS2 = 1;
+            ADCON0bits.CHS3 = 0;
+            break;
+        case 6:
+            ADCON0bits.CHS0 = 0;
+            ADCON0bits.CHS1 = 1;
+            ADCON0bits.CHS2 = 1;
+            ADCON0bits.CHS3 = 0;
+            break;
+        case 7:
+            ADCON0bits.CHS0 = 1;
+            ADCON0bits.CHS1 = 1;
+            ADCON0bits.CHS2 = 1;
+            ADCON0bits.CHS3 = 0;
+            break;
+        case 8:
+            ADCON0bits.CHS0 = 0;
+            ADCON0bits.CHS1 = 0;
+            ADCON0bits.CHS2 = 0;
+            ADCON0bits.CHS3 = 1;
+            break;
+        case 9:
+            ADCON0bits.CHS0 = 1;
+            ADCON0bits.CHS1 = 0;
+            ADCON0bits.CHS2 = 0;
+            ADCON0bits.CHS3 = 1;
+            break;
+        case 10:
+            ADCON0bits.CHS0 = 0;
+            ADCON0bits.CHS1 = 1;
+            ADCON0bits.CHS2 = 0;
+            ADCON0bits.CHS3 = 1;
+            break;
+        case 11:
+            ADCON0bits.CHS0 = 1;
+            ADCON0bits.CHS1 = 1;
+            ADCON0bits.CHS2 = 0;
+            ADCON0bits.CHS3 = 1;
+            break;
+        case 12:
+            ADCON0bits.CHS0 = 0;
+            ADCON0bits.CHS1 = 0;
+            ADCON0bits.CHS2 = 1;
+            ADCON0bits.CHS3 = 1;
+            break;
+        case 13:
+            ADCON0bits.CHS0 = 1;
+            ADCON0bits.CHS1 = 0;
+            ADCON0bits.CHS2 = 1;
+            ADCON0bits.CHS3 = 1;
+            break;
+        case 14:
+            ADCON0bits.CHS0 = 0;
+            ADCON0bits.CHS1 = 1;
+            ADCON0bits.CHS2 = 1;
+            ADCON0bits.CHS3 = 1;
+            break;
+        case 15:
+            ADCON0bits.CHS0 = 1;
+            ADCON0bits.CHS1 = 1;
+            ADCON0bits.CHS2 = 1;
+            ADCON0bits.CHS3 = 1;
+            break;
+    }
+    _delay((unsigned long)((200)*(8000000/4000000.0)));
+    ADCON0bits.GO = 1;
 }
