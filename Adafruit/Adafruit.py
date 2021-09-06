@@ -39,14 +39,14 @@ while True:
         calidad_aire_data = aio.receive(calidad_aire_feed.key)
         
         #***************************************hay que cambiar toodo lo de abajo para probar si funciona*********************
-        valor = int(uart_data.value)
+        valor = int(temperatura_data.value)
         puerto.write(b's') #mando codigo de caracter
         val = puerto.readline(3).decode('ascii') #recibo 2 bytes
         val = int(val)  
 
         if(valor != temporal1 or val1 != temporal2):
-            print(f'valor que se le envia al pic: {uart_data.value}')
-            print(f'valor de contador de botones: {botones_data.value} \n')
+            print(f'valor de temperatura: {temperatura_data.value}')
+            print(f'valor de humedad: {humedad_data.value} \n')
 
             if (valor < 10 and valor > -1):
                 puerto.write(nulo.encode('ascii')) #envio un cero
@@ -55,14 +55,21 @@ while True:
             elif (valor <100 and valor > 9):
                 puerto.write(nulo.encode('ascii')) #envio un cero
             
-            envio = str(int(uart_data.value))
-            puerto.write(envio.encode('ascii'))
-            print("Escrito en pic: {} \n".format(envio))
-            print("Escrito en AdaFruit: ")
-            print(val)
+            #envio = str(int(uart_data.value))
+            #puerto.write(envio.encode('ascii'))
+            #print("Escrito en pic: {} \n".format(envio))
+            #print("Escrito en AdaFruit: ")
+            #print(val)
             
             #cliente.send_data(mifeed.feed.key, valor a enviar) ; Esto para mandar dato y leer
-            aio.send_data(botones_feed.key, val)
+            aio.send_data(humedad_feed.key, val)
             print('----------------------------------------------------')
-            temporal1 = int(uart_data.value)
-            temporal2 = int(botones_data.value)
+            temporal1 = int(temperatura_data.value)
+            temporal2 = int(humedad_data.value)
+
+            
+    valor = int(calidad_aire_data.value) #chequo si detener la simulación
+        if valor == 1:
+            break
+        time.sleep(0.1)
+print('Mala calidad de aire')
