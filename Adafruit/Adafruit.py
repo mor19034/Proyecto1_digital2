@@ -14,46 +14,45 @@ temporal1 = 0
 temporal2 = 0
 
 #ubicación de mi plataforma
-ADAFRUIT_IO_KEY = "aio_VifF06V2bL60eCycFW47k9ElAwgp"  #contraseña
-ADAFRUIT_IO_USERNAME = "mor19034"                    #usuario
+ADAFRUIT_IO_USERNAME = "mor19034"#usuario
+ADAFRUIT_IO_KEY = "aio_maJx182LEONulLdZ00wnhEsuRgBe"#contraseña
 aio = Client(ADAFRUIT_IO_USERNAME, ADAFRUIT_IO_KEY)
 
 #Defino nombre de comunicación
-puerto = serial.Serial("COM8",9600) 
-puerto.timeout = 3 #tiempo de espera para recibir datos
+dev = serial.Serial("COM3",9600) 
+dev.timeout = 3 #tiempo de espera para recibir datos
 time.sleep(1) #para que establezca conexion
-
 print('Puerto activado con exito \n')
 #----------------Temperatura y humedad valor---------------------------------
 
 while True:
-    with puerto:   #utilice el COM serial
-        #nombre_feed = cliente.feed('llave_de_mi_feed')
-        temperatura_feed = aio.feeds('sensor-de-temperatura')
-        humedad_feed = aio.feeds('sensor-de-humedad')
-        calidad_aire_feed = aio.feeds('calidad-de-aire')
-
-        #variable = cliente.receive(mifeed_feed.key) ; Esto para leer valor
-        temperatura_data = aio.receive(temperatura_feed.key)
-        humedad_data = aio.receive(humedad_feed.key)
-        calidad_aire_data = aio.receive(calidad_aire_feed.key)
+    with dev:   #utilice el COM serial
+##        #nombre_feed = cliente.feed('llave_de_mi_feed')
+##        temperatura_feed = aio.feeds('sensor-de-temperatura')
+##        humedad_feed = aio.feeds('sensor-de-humedad')
+##        calidad_aire_feed = aio.feeds('calidad-de-aire')
+##
+##        #variable = cliente.receive(mifeed_feed.key) ; Esto para leer valor
+##        temperatura_data = aio.receive(temperatura_feed.key)
+##        humedad_data = aio.receive(humedad_feed.key)
+##        calidad_aire_data = aio.receive(calidad_aire_feed.key)
         
         #***************************************hay que cambiar toodo lo de abajo para probar si funciona*********************
-        valor = int(temperatura_data.value)
-        puerto.write(b's') #mando codigo de caracter
-        val = puerto.readline(3).decode('ascii') #recibo 2 bytes
-        val = int(val)  
+        #valor = int(temperatura_data.value)
+        dev.write(b's') #mando codigo de caracter
+        val = dev.readline(3).decode('ascii') #recibo 2 bytes
+        val = int(float(val)) 
 
-        if(valor != temporal1 or val1 != temporal2):
+        if(valor != temporal1 or val != temporal2):
             print(f'valor de temperatura: {temperatura_data.value}')
             print(f'valor de humedad: {humedad_data.value} \n')
 
             if (valor < 10 and valor > -1):
-                puerto.write(nulo.encode('ascii')) #envio un cero
-                puerto.write(nulo.encode('ascii'))
+                dev.write(nulo.encode('ascii')) #envio un cero
+                dev.write(nulo.encode('ascii'))
                 
             elif (valor <100 and valor > 9):
-                puerto.write(nulo.encode('ascii')) #envio un cero
+                dev.write(nulo.encode('ascii')) #envio un cero
             
             #envio = str(int(uart_data.value))
             #puerto.write(envio.encode('ascii'))
@@ -62,14 +61,15 @@ while True:
             #print(val)
             
             #cliente.send_data(mifeed.feed.key, valor a enviar) ; Esto para mandar dato y leer
-            aio.send_data(humedad_feed.key, val)
+            #aio.send_data(humedad_feed.key, val)
             print('----------------------------------------------------')
-            temporal1 = int(temperatura_data.value)
-            temporal2 = int(humedad_data.value)
+            #temporal1 = int(temperatura_data.value)
+            #temporal2 = int(humedad_data.value)
+            
 
             
-    valor = int(calidad_aire_data.value) #chequo si detener la simulación
-        if valor == 1:
-            break
-        time.sleep(0.1)
-print('Mala calidad de aire')
+    #valor = int(calidad_aire_data.value) #chequo si detener la simulación
+      #  if valor == 1:
+          #  break
+       # time.sleep(0.1)
+#print('Mala calidad de aire')
