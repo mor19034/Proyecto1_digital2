@@ -80,11 +80,17 @@ void Lcd_Write_String(char *a);
 void Lcd_Shift_Right(void);
 void Lcd_Shift_Left(void);
 
-//COnversion ADC 
+//**************************COnversion ADC************************************** 
 void convert(char *data,float a, int place);
 void start_adc(uint8_t frec, uint8_t isr, uint8_t Vref, uint8_t justRL);
 void Select_ch(uint8_t channel);
 void start_ch(uint8_t channel);
 
+//**********************función de librería de EUSART***************************
+void init_USART (void);
+char USART_Recieve(void);
+void USART_Cadena(char *str);
+void USART_Transmit(char dato);
+//******************************************************************************
 #endif	/* __LIBRERIAS_H */
 

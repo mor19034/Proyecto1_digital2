@@ -66,6 +66,8 @@ float conv3 = 0;
 
 uint8_t datos_sensor[3];
 int dato;
+
+char ingreso;
 //*****************************************************************************
 // Definición de funciones para que se puedan colocar después del main de lo 
 // contrario hay que colocarlos todas las funciones antes del main
@@ -155,7 +157,7 @@ void main(void) {
         conv1 = temperatura;
         
         convert(lcd1, conv1, 2);//
-        
+        //*******************esta parte es del sensor de humedad****************
         conv0 = 0;//se reinicia las cada ves que se inicia el proceso de enviar datos
         conv0 = var_hum; //Se guarda el dato de humedad.     
 //        conv0 = 100;
@@ -198,6 +200,16 @@ void main(void) {
 //        conv3 = temp; 
 //        convert(lcd1, volt, 2);
         
+        if (PIR1bits.RCIF == 1){ //compruebo si se introdujo un dato
+            ingreso = USART_Recieve();
+            
+            if(ingreso == 's'){
+                USART_Transmit(temperatura);
+                USART_Transmit(humedad);
+//                USART_Transmit(unidad); //esta parte es para el sensor de humo
+            }
+        }
+        ingreso = 0; //se limpia la variable una vez enviados los datos
         __delay_ms(500);
 
     }
@@ -220,7 +232,10 @@ void setup(void){
     PORTD = 0x00;
     I2C_Master_Init(100000);        // Inicializar Comuncación I2C
     
-    //Configuracion del Oscilador
+    //*****************************conf UART************************************
+    void init_USART (void);
+    //**************************************************************************
+    //*******************Configuracion del Oscilador****************************
     OSCCONbits.IRCF2 = 1;       //Reloj interno de 8MHz
     OSCCONbits.IRCF1 = 1;
     OSCCONbits.IRCF0 = 1;

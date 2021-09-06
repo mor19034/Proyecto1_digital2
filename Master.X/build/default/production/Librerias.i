@@ -2688,6 +2688,12 @@ void convert(char *data,float a, int place);
 void start_adc(uint8_t frec, uint8_t isr, uint8_t Vref, uint8_t justRL);
 void Select_ch(uint8_t channel);
 void start_ch(uint8_t channel);
+
+
+void init_USART (void);
+char USART_Recieve(void);
+void USART_Cadena(char *str);
+void USART_Transmit(char dato);
 # 8 "Librerias.c" 2
 
 
@@ -3144,4 +3150,37 @@ void Select_ch(uint8_t channel) {
     }
     _delay((unsigned long)((200)*(8000000/4000000.0)));
     ADCON0bits.GO = 1;
+}
+
+
+
+void init_USART (void){
+
+    TXSTAbits.SYNC = 0;
+    TXSTAbits.BRGH = 1;
+    BAUDCTLbits.BRG16 = 1;
+
+    SPBRG = 207;
+    SPBRGH = 0;
+
+    RCSTAbits.SPEN = 1;
+    RCSTAbits.RX9 = 0;
+    RCSTAbits.CREN = 1;
+    TXSTAbits.TXEN = 1;
+}
+
+void USART_Transmit(char dato){
+    while(TXSTAbits.TRMT == 0);
+    TXREG = dato;
+}
+
+char USART_Recieve(){
+    return RCREG;
+   }
+
+void USART_Cadena(char *str){
+    while(*str != '\0'){
+        USART_Transmit(*str);
+        str++;
+    }
 }

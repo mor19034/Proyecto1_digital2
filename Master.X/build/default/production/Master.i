@@ -2704,6 +2704,12 @@ void convert(char *data,float a, int place);
 void start_adc(uint8_t frec, uint8_t isr, uint8_t Vref, uint8_t justRL);
 void Select_ch(uint8_t channel);
 void start_ch(uint8_t channel);
+
+
+void init_USART (void);
+char USART_Recieve(void);
+void USART_Cadena(char *str);
+void USART_Transmit(char dato);
 # 39 "Master.c" 2
 
 
@@ -2944,6 +2950,8 @@ float conv3 = 0;
 uint8_t datos_sensor[3];
 int dato;
 
+char ingreso;
+
 
 
 
@@ -2997,7 +3005,7 @@ void main(void) {
          var_hum = I2C_Master_Read(0);
          I2C_Master_Stop();
          _delay((unsigned long)((200)*(8000000/4000.0)));
-# 146 "Master.c"
+# 148 "Master.c"
         temp = tem1 << 8;
         temp = temp + tem2;
 
@@ -3026,7 +3034,17 @@ void main(void) {
         Lcd_Write_String(humedad);
         Lcd_Set_Cursor(2, 11);
         Lcd_Write_String("C");
-# 201 "Master.c"
+# 203 "Master.c"
+        if (PIR1bits.RCIF == 1){
+            ingreso = USART_Recieve();
+
+            if(ingreso == 's'){
+                USART_Transmit(temperatura);
+                USART_Transmit(humedad);
+
+            }
+        }
+        ingreso = 0;
         _delay((unsigned long)((500)*(8000000/4000.0)));
 
     }
@@ -3048,6 +3066,9 @@ void setup(void){
     PORTB = 0x00;
     PORTD = 0x00;
     I2C_Master_Init(100000);
+
+
+    void init_USART (void);
 
 
     OSCCONbits.IRCF2 = 1;
