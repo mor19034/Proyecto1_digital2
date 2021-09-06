@@ -23,7 +23,7 @@ intentry CODE 0 4 4 A 2
 bssBANK0 BANK0 1 20 20 7 1
 bssCOMMON COMMON 1 70 70 5 1
 config CONFIG 4 2007 2007 2 2
-$C:\Users\pablo\AppData\Local\Temp\sk64.o
+$C:\Users\pablo\AppData\Local\Temp\sbvc.o
 reset_vec CODE 0 0 0 3 2
 end_init CODE 0 E E 3 2
 config CONFIG 4 2007 2007 2 2
@@ -73,25 +73,25 @@ STRING 1F2-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\Slave_2.X.production.o
-11 cinit CODE >668:C:\Users\pablo\AppData\Local\Temp\sk64.s
-11 cinit CODE >671:C:\Users\pablo\AppData\Local\Temp\sk64.s
-11 cinit CODE >715:C:\Users\pablo\AppData\Local\Temp\sk64.s
-12 cinit CODE >716:C:\Users\pablo\AppData\Local\Temp\sk64.s
-13 cinit CODE >717:C:\Users\pablo\AppData\Local\Temp\sk64.s
-14 cinit CODE >718:C:\Users\pablo\AppData\Local\Temp\sk64.s
-15 cinit CODE >719:C:\Users\pablo\AppData\Local\Temp\sk64.s
-16 cinit CODE >722:C:\Users\pablo\AppData\Local\Temp\sk64.s
-17 cinit CODE >723:C:\Users\pablo\AppData\Local\Temp\sk64.s
-18 cinit CODE >724:C:\Users\pablo\AppData\Local\Temp\sk64.s
-19 cinit CODE >725:C:\Users\pablo\AppData\Local\Temp\sk64.s
-1A cinit CODE >726:C:\Users\pablo\AppData\Local\Temp\sk64.s
-1B cinit CODE >727:C:\Users\pablo\AppData\Local\Temp\sk64.s
-1C cinit CODE >728:C:\Users\pablo\AppData\Local\Temp\sk64.s
-1D cinit CODE >729:C:\Users\pablo\AppData\Local\Temp\sk64.s
-1E cinit CODE >730:C:\Users\pablo\AppData\Local\Temp\sk64.s
-1F cinit CODE >736:C:\Users\pablo\AppData\Local\Temp\sk64.s
-1F cinit CODE >738:C:\Users\pablo\AppData\Local\Temp\sk64.s
-20 cinit CODE >739:C:\Users\pablo\AppData\Local\Temp\sk64.s
+11 cinit CODE >668:C:\Users\pablo\AppData\Local\Temp\sbvc.s
+11 cinit CODE >671:C:\Users\pablo\AppData\Local\Temp\sbvc.s
+11 cinit CODE >715:C:\Users\pablo\AppData\Local\Temp\sbvc.s
+12 cinit CODE >716:C:\Users\pablo\AppData\Local\Temp\sbvc.s
+13 cinit CODE >717:C:\Users\pablo\AppData\Local\Temp\sbvc.s
+14 cinit CODE >718:C:\Users\pablo\AppData\Local\Temp\sbvc.s
+15 cinit CODE >719:C:\Users\pablo\AppData\Local\Temp\sbvc.s
+16 cinit CODE >722:C:\Users\pablo\AppData\Local\Temp\sbvc.s
+17 cinit CODE >723:C:\Users\pablo\AppData\Local\Temp\sbvc.s
+18 cinit CODE >724:C:\Users\pablo\AppData\Local\Temp\sbvc.s
+19 cinit CODE >725:C:\Users\pablo\AppData\Local\Temp\sbvc.s
+1A cinit CODE >726:C:\Users\pablo\AppData\Local\Temp\sbvc.s
+1B cinit CODE >727:C:\Users\pablo\AppData\Local\Temp\sbvc.s
+1C cinit CODE >728:C:\Users\pablo\AppData\Local\Temp\sbvc.s
+1D cinit CODE >729:C:\Users\pablo\AppData\Local\Temp\sbvc.s
+1E cinit CODE >730:C:\Users\pablo\AppData\Local\Temp\sbvc.s
+1F cinit CODE >736:C:\Users\pablo\AppData\Local\Temp\sbvc.s
+1F cinit CODE >738:C:\Users\pablo\AppData\Local\Temp\sbvc.s
+20 cinit CODE >739:C:\Users\pablo\AppData\Local\Temp\sbvc.s
 4 intentry CODE >71:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
 E9 text3 CODE >71:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
 E9 text3 CODE >72:C:\Users\pablo\MPLABXProjects\Proyecto1_digital2\Slave_2.X\Slave_2.c
@@ -238,22 +238,22 @@ __Hspace_4 4010 0 ABS 0 - -
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __Hstrings 0 0 ABS 0 strings -
 _PEIE 5E 0 ABS 0 - dist/default/production\Slave_2.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\pablo\AppData\Local\Temp\sk64.o
+___sp 0 0 STACK 2 stack C:\Users\pablo\AppData\Local\Temp\sbvc.o
 _lec1 70 0 COMMON 1 bssCOMMON dist/default/production\Slave_2.X.production.o
 _main 46 0 CODE 0 maintext dist/default/production\Slave_2.X.production.o
 _tem1 74 0 COMMON 1 bssCOMMON dist/default/production\Slave_2.X.production.o
 _tem2 21 0 BANK0 1 bssBANK0 dist/default/production\Slave_2.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\Slave_2.X.production.o
-start 1C 0 CODE 0 init C:\Users\pablo\AppData\Local\Temp\sk64.o
+start 1C 0 CODE 0 init C:\Users\pablo\AppData\Local\Temp\sbvc.o
 __size_of_main 0 0 ABS 0 - dist/default/production\Slave_2.X.production.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\pablo\AppData\Local\Temp\sk64.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\pablo\AppData\Local\Temp\sk64.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\pablo\AppData\Local\Temp\sk64.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\pablo\AppData\Local\Temp\sk64.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\pablo\AppData\Local\Temp\sk64.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\pablo\AppData\Local\Temp\sk64.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\pablo\AppData\Local\Temp\sbvc.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\pablo\AppData\Local\Temp\sbvc.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\pablo\AppData\Local\Temp\sbvc.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\pablo\AppData\Local\Temp\sbvc.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\pablo\AppData\Local\Temp\sbvc.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\pablo\AppData\Local\Temp\sbvc.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 _OSCCONbits 8F 0 ABS 0 - dist/default/production\Slave_2.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\Slave_2.X.production.o
@@ -266,8 +266,8 @@ _SSPCONbits 14 0 ABS 0 - dist/default/production\Slave_2.X.production.o
 _CCPR1L 15 0 ABS 0 - dist/default/production\Slave_2.X.production.o
 _CCPR2L 1B 0 ABS 0 - dist/default/production\Slave_2.X.production.o
 __Lmaintext 0 0 ABS 0 maintext -
-___stackhi 0 0 ABS 0 - C:\Users\pablo\AppData\Local\Temp\sk64.o
-___stacklo 0 0 ABS 0 - C:\Users\pablo\AppData\Local\Temp\sk64.o
+___stackhi 0 0 ABS 0 - C:\Users\pablo\AppData\Local\Temp\sbvc.o
+___stacklo 0 0 ABS 0 - C:\Users\pablo\AppData\Local\Temp\sbvc.o
 _I2C_Slave_Init 3AC 0 CODE 0 text2 dist/default/production\Slave_2.X.production.o
 __size_of_setup 0 0 ABS 0 - dist/default/production\Slave_2.X.production.o
 start_initialization 22 0 CODE 0 cinit dist/default/production\Slave_2.X.production.o
@@ -278,7 +278,7 @@ _SSPBUF 13 0 ABS 0 - dist/default/production\Slave_2.X.production.o
 _SSPCON 14 0 ABS 0 - dist/default/production\Slave_2.X.production.o
 _TRISC3 43B 0 ABS 0 - dist/default/production\Slave_2.X.production.o
 _TRISC4 43C 0 ABS 0 - dist/default/production\Slave_2.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\pablo\AppData\Local\Temp\sk64.o
+___int_sp 0 0 STACK 2 stack C:\Users\pablo\AppData\Local\Temp\sbvc.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -327,7 +327,7 @@ _lec 23 0 BANK0 1 bssBANK0 dist/default/production\Slave_2.X.production.o
 saved_w 7E 0 ABS 0 - dist/default/production\Slave_2.X.production.o
 __end_of_isr 2E2 0 CODE 0 text3 dist/default/production\Slave_2.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\pablo\AppData\Local\Temp\sk64.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\pablo\AppData\Local\Temp\sbvc.o
 __LbssBANK0 0 0 ABS 0 bssBANK0 -
 _PIE1bits 8C 0 ABS 0 - dist/default/production\Slave_2.X.production.o
 __pmaintext 46 0 CODE 0 maintext dist/default/production\Slave_2.X.production.o
