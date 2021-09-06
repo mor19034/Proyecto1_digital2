@@ -2701,6 +2701,11 @@ uint8_t dato;
 uint8_t adc;
 uint8_t lec;
 
+uint16_t lec1;
+uint8_t tem1, tem2;
+
+uint8_t counter, speed, torque;
+
 
 
 
@@ -2733,12 +2738,14 @@ void __attribute__((picinterrupt(("")))) isr(void) {
         }
         else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
             z = SSPBUF;
+
+
             switch (lec) {
                 case 1:
-                    SSPBUF = 32;
+                    SSPBUF = tem2;
                     break;
                 case 2:
-                    SSPBUF = 16;
+                    SSPBUF = tem1;
                     break;
             }
             SSPCONbits.CKP = 1;
@@ -2748,16 +2755,79 @@ void __attribute__((picinterrupt(("")))) isr(void) {
 
         PIR1bits.SSPIF = 0;
     }
+
+
+    if (PIR1bits.ADIF) {
+        if (ADCON0bits.CHS == 0) {
+            tem1 = ADRESH;
+            tem2 = ADRESL;
+        }
+
+        else {
+            PORTD = ADRESH;
+        }
+
+        PIR1bits.ADIF = 0;
+    }
+# 147 "Slave_2.c"
 }
 
 
 
 void main(void) {
     setup();
+    ADCON0bits.GO = 1;
+
 
 
 
     while(1){
+        if (ADCON0bits.GO == 0){
+            if (ADCON0bits.CHS == 0) {
+                ADCON0bits.CHS = 1;
+            }
+            else {
+                ADCON0bits.CHS = 0;
+            }
+
+            _delay((unsigned long)((200)*(8000000/4000000.0)));
+            ADCON0bits.GO = 1;
+        }
+
+        lec1 = tem1 << 8;
+        lec1 = lec1 + tem2;
+
+
+        if (lec1 > -1 && lec1 < 50) {
+            speed = 255;
+        }
+
+        else if (lec1 > 50 && lec1 < 125) {
+            speed = 180;
+        }
+
+        else if (lec1 > 125 && lec1 < 200) {
+            speed = 120;
+        }
+
+        else if (lec1 > 200 && lec1 < 300) {
+            speed = 80;
+        }
+
+        else if (lec1 > 300) {
+            speed = 20;
+        }
+
+        torque = 255;
+        PORTB = speed;
+
+        CCPR1L = speed;
+        CCP1CONbits.DC1B1 = speed & 0b01;
+        CCP1CONbits.DC1B0 = (speed >> 7);
+
+        CCPR2L = torque;
+        CCP2CONbits.DC2B1 = torque & 0b01;
+        CCP2CONbits.DC2B0 = (torque >> 7);
 
     }
     return;
@@ -2766,10 +2836,10 @@ void main(void) {
 
 
 void setup(void){
-    ANSEL = 0x01;
+    ANSEL = 0x03;
     ANSELH = 0x00;
 
-    TRISA = 0x01;
+    TRISA = 0x03;
     TRISB = 0x00;
     TRISD = 0x00;
 
@@ -2787,4 +2857,43 @@ void setup(void){
 
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
+    PIE1bits.ADIE = 1;
+
+    PIR1bits.ADIF = 0;
+
+
+    ADCON1bits.ADFM = 1;
+    ADCON1bits.VCFG0 = 0;
+    ADCON1bits.VCFG1 = 0;
+
+    ADCON0bits.ADCS1 = 1;
+    ADCON0bits.CHS = 0;
+    _delay((unsigned long)((200)*(8000000/4000000.0)));
+    ADCON0bits.ADON = 1;
+    _delay((unsigned long)((200)*(8000000/4000000.0)));
+
+
+    TRISCbits.TRISC2 = 1;
+    TRISCbits.TRISC1 = 1;
+    PR2 = 250;
+    CCP1CONbits.P1M = 0;
+    CCP1CONbits.CCP1M = 0b1100;
+    CCP2CONbits.CCP2M = 0b1100;
+
+    CCPR1L = 0x0f;
+    CCPR2L = 0x0f;
+    CCP1CONbits.DC1B = 0;
+    CCP2CONbits.DC2B0 = 0;
+    CCP2CONbits.DC2B1 = 0;
+
+
+    PIR1bits.TMR2IF = 0;
+    T2CONbits.T2CKPS = 0b11;
+    T2CONbits.TMR2ON = 1;
+
+    while (PIR1bits.TMR2IF == 0);
+    PIR1bits.TMR2IF = 0;
+
+    TRISCbits.TRISC2 = 0;
+    TRISCbits.TRISC1 = 0;
 }

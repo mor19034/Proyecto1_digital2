@@ -23,69 +23,103 @@
 // #pragma config statements should precede project file includes.
 // Use project enums instead of #define for ON and OFF.
 
-//----------------------------librerias a utilizar------------------------------
-#include <xc.h>
-#include <stdint.h>
+////----------------------------librerias a utilizar------------------------------
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
+#include <xc.h>
 #include <string.h> // Concatenar
-//#include "EUSART.h"
-//#include "configuraciones_pic.h"
+#include "LCD.h"
+#include "ADC.h"
 #include "DHT11.h"
+
 
 //*******************************definiciones***********************************
 #define _XTAL_FREQ 8000000 
-#define DHT11_PIN PORTBbits.RB7 
-//*********************************Variables************************************
+#define DHT11_PIN PORTAbits.RA0 
+#define DHT11_PIN_Direction TRISAbits.TRISA0
+//******************************************************************************
+//  variables y prototipos
+//******************************************************************************
 
- //********************************Prototipos***********************************
-void setup (void);
-char centenas (int dato);
-char decenas (int dato);
-char unidades (int dato);
- //********************************Interrupciones*******************************
-// void __interrupt() isr(void){  
-//--------------------------------interrupcion PORTB----------------------------
-
-
-//*********************************loop principal*******************************
- void main (void){
-    setup();  
-    while (1){
+uint8_t contador;
+uint8_t Temp1;
+uint8_t dummyT1;
+uint8_t Hum1;
+uint8_t dummyHum1;
+uint8_t CHECKSUM;
+char temperatura[10];
+char humedad[10];
+float conv0 = 0;
+float conv1 = 0;
+//************************************prototipos********************************
+void config(void);
+//******************************************************************************
+//  funciones y loop principal
+//******************************************************************************
+void main(void){
+    config();
+    Lcd_Init();
+    Lcd_Clear();
+    while(1){
         
+        DHT11_start();
+        if(DHT11_response()){
+            DHT11_ReadData(&Hum1);
+            DHT11_ReadData(&dummyHum1);
+            DHT11_ReadData(&Temp1);
+            DHT11_ReadData(&dummyT1);
+            DHT11_ReadData(&CHECKSUM);
+            PORTD++;
+            
+            if(CHECKSUM == ((Hum1 + dummyHum1 + Temp1 + dummyT1) & 0XFF)){ 
+                //se revisa si los datos que se pasaron fueron los correctos
+                conv0 = 0;
+                conv1 = 0;
+                conv0 = Hum1; 
+                conv1 = Temp1;
+                convert(humedad, conv0, 2); //se convierte el valor actual a un valor ASCII.
+                convert(temperatura, conv1, 2);
+  
+                Lcd_Set_Cursor(1, 1); //primeras cordenadas de la pantalla
+                Lcd_Write_String("hum:"); //se escribe en la pantalla
+                Lcd_Set_Cursor(1, 8); //nos despalazamos en la pantalla
+                Lcd_Write_String("Temp:"); //se escribe de nuevo
+                Lcd_Set_Cursor(2, 1);
+                Lcd_Write_String(humedad);
+                Lcd_Set_Cursor(2, 7);
+                Lcd_Write_String(temperatura);
+                //los datos pasaron exitsamentee
+            }
+            else{ //si el dato no es correcto se avisa al usuario
+                Lcd_Clear();
+                Lcd_Set_Cursor(1,1);
+                Lcd_Write_String("error en datos");  
+            }
+        }
+        __delay_ms(500);
     }
-    return;
- }
- //*******************************funciones**************************************
+}
 
-
- //********************************configuraciones******************************
- void setup(void){
-    ANSEL = 0X00;
-    ANSELH = 0X00;
-    //----------------------------SELECCIONAR INPUTS Y OUTPUTS------------------   
-    TRISA = 0X00;
-    TRISB = 0x03;
-    //----------------------------LIMPIAR PUERTOS-------------------------------    
-    PORTA = 0X00;
-    PORTB = 0x00;
-    //------------------------------configuracion del oscilador-----------------
-    OSCCONbits.IRCF = 111; ; //Reloj interno de 8MHz
-    OSCCONbits.SCS = 1; //se utiliza el reloj interno del sistema
-    //Configuracion del timer 1
-    T1CON  = 0x10;        // Timer1 con 1:2 prescaler (Timer1 clock = 1MHz)
-    TMR1H  = 0;           // reiniciar Timer1
-    TMR1L  = 0; 
-    //-----------------------------conf UART------------------------------------
-    void init_USART (void);
- //-------------------------configuración de interrpciones----------------------
-
+void config(void){
+    ANSEL =     0X00;
+    ANSELH =    0X00;
+    TRISA =     0X00;
+    TRISB =     0X00; 
+    TRISD =     0X00;
+    TRISE =     0x00;
+    PORTA =     0X00;
+    PORTB =     0X00;
+    PORTD =     0X00;
+    PORTE =     0x00;
+ 
     
-//    //Interrupciones de transmisión recepción activadas
-//    PIE1bits.RCIE = 1;
-//    PIE1bits.TXIE = 1;
-//    //banderas de transmisión y recepción se bajan
-//    PIR1bits.TXIF = 0; 
-//    PIR1bits.RCIF = 0; 
- }
-
+    //Configuracion del oscilador
+    OSCCONbits.IRCF = 0b111; //oscilador a 8Mhz
+    OSCCONbits.SCS = 0b1;
+    
+    //Configuracion del timmer1
+    T1CON = 0X10; //periodo de 1MHz, ya que fuente es FOSC/4
+    TMR1H = 0; //valores en 0 para el conteo de los periodos de pulso
+    TMR1L = 0;
+}

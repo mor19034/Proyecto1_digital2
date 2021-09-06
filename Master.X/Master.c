@@ -50,9 +50,11 @@
 //******************************************************************************
 // Variables
 //****************************************************************************
-volatile uint8_t adc = 0;
-volatile int8_t sensor = 0;
+volatile uint8_t tem1 = 0;
+volatile uint8_t tem2 = 0;
 volatile uint8_t contador = 0;
+float temp;
+float volt, temperatura;
 
 char lcd1[10];
 char lcd2[10];
@@ -96,7 +98,7 @@ void main(void) {
         
         I2C_Master_Start();
         I2C_Master_Write(0x51);
-        adc = I2C_Master_Read(0);
+        tem1 = I2C_Master_Read(0);
         I2C_Master_Stop();
         __delay_ms(200);
         
@@ -108,7 +110,7 @@ void main(void) {
         
         I2C_Master_Start();
         I2C_Master_Write(0x51);
-        sensor = I2C_Master_Read(0);
+        tem2 = I2C_Master_Read(0);
         I2C_Master_Stop();
         __delay_ms(200);
         
@@ -126,8 +128,8 @@ void main(void) {
 //        sensor = I2C_Master_Read(0);
 //        I2C_Master_Stop();
 //        __delay_ms(200);
-//        
-//        
+        
+        
 //        //Lectura Esclavo 2
 //        I2C_Master_Start();
 //        I2C_Master_Write(0x61);
@@ -135,16 +137,29 @@ void main(void) {
 //        I2C_Master_Stop();
 //        __delay_ms(200);
         
+        temp = tem1 << 8;
+        temp = temp + tem2;
+        
+        volt = (temp/ (float) 1023)*5;
+        temperatura = (volt* (float) 100);
+        
+        conv1 = 0;
+        
+        conv1 = temperatura;
+        
+        convert(lcd1, conv1, 2);//
+        
+        
         //Mostramos en el LCD los valores de los sensores
         Lcd_Set_Cursor(2, 1);             //Elegimos posicion
         Lcd_Write_String(lcd1);        //Escribimos valor del sensor
-        Lcd_Set_Cursor(2, 5);             //Nueva posicion
-        Lcd_Write_String("V");            //Dimensional del sensor
+        Lcd_Set_Cursor(2, 6);             //Nueva posicion
+        Lcd_Write_String("C");            //Dimensional del sensor
         
-        Lcd_Set_Cursor(2, 7);
-        Lcd_Write_String(lcd2);
-        Lcd_Set_Cursor(2, 11);
-        Lcd_Write_String("C");
+//        Lcd_Set_Cursor(2, 7);
+//        Lcd_Write_String(lcd2);
+//        Lcd_Set_Cursor(2, 11);
+//        Lcd_Write_String("C");
 //        
 //        Lcd_Set_Cursor(2, 14);
 //        Lcd_Write_String(lcd3);
@@ -153,14 +168,24 @@ void main(void) {
         conv1 = 0;//se reinicia las cada ves que se inicia el proceso de enviar datos
         conv2 = 0;//tanto para la LCD como por UART.
         
-        conv1 = (adc / (float) 255)*5; //Se consigue el porcentaje con respecto al valor 
-        //maximo que un puerto puede tener, despues se multiplica por 5 para conocer el voltaje actual del puerto                                          
-        convert(lcd1, conv1, 2);//se convierte el valor actual a un valor ASCII.
+//        conv1 = tem1;
+//        conv1 = conv1 + tem2;
         
-        conv2 = sensor;
-        convert(lcd2, conv2, 2);
+//        conv1 = (conv1/ (float)1023)*500;
+        //maximo que un puerto puede tener, despues se multiplica por 5 para conocer el voltaje actual del puerto                                          
+//        convert(lcd1, conv1, 2);//se convierte el valor actual a un valor ASCII.
+        
+//        conv2 = tem2;
+//        PORTD = tem1;
+//        convert(lcd2, conv2, 2);
+        
+//        temp = tem1 << 8;
+//        temp = temp + tem2;
+//        volt = (temp/(float)1023)*5;
+//        temperatura = (volt*(float)100);
 //        
-//        convert(lcd3, contador, 2);
+//        conv3 = temp; 
+//        convert(lcd1, volt, 2);
         
         __delay_ms(500);
 

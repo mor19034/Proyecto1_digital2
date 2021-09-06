@@ -57,13 +57,13 @@
 [v _Lcd_Write_String Lcd_Write_String `(v  1 e 1 0 ]
 "177
 [v _convert convert `(v  1 e 1 0 ]
-"77 C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Master.X\Master.c
+"79 C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Master.X\Master.c
 [v _main main `(v  1 e 1 0 ]
-"173
+"198
 [v _setup setup `(v  1 e 1 0 ]
 "228 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
-[s S218 . 1 `uc 1 RC0 1 0 :1:0 
+[s S220 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
@@ -73,8 +73,8 @@
 `uc 1 RC7 1 0 :1:7 
 ]
 "307
-[u S227 . 1 `S218 1 . 1 0 ]
-[v _PORTCbits PORTCbits `VES227  1 e 1 @7 ]
+[u S229 . 1 `S220 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES229  1 e 1 @7 ]
 "352
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
 "843
@@ -113,7 +113,7 @@
 [v _OSCCONbits OSCCONbits `VES119  1 e 1 @143 ]
 "1979
 [v _SSPCON2 SSPCON2 `VEuc  1 e 1 @145 ]
-[s S189 . 1 `uc 1 SEN 1 0 :1:0 
+[s S191 . 1 `uc 1 SEN 1 0 :1:0 
 `uc 1 RSEN 1 0 :1:1 
 `uc 1 PEN 1 0 :1:2 
 `uc 1 RCEN 1 0 :1:3 
@@ -123,8 +123,8 @@
 `uc 1 GCEN 1 0 :1:7 
 ]
 "1996
-[u S198 . 1 `S189 1 . 1 0 ]
-[v _SSPCON2bits SSPCON2bits `VES198  1 e 1 @145 ]
+[u S200 . 1 `S191 1 . 1 0 ]
+[v _SSPCON2bits SSPCON2bits `VES200  1 e 1 @145 ]
 "2048
 [v _SSPADD SSPADD `VEuc  1 e 1 @147 ]
 "2177
@@ -146,28 +146,31 @@
 "4460
 [v _TRISC4 TRISC4 `VEb  1 e 0 @1084 ]
 "53 C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Master.X\Master.c
-[v _adc adc `VEuc  1 e 1 0 ]
+[v _tem1 tem1 `VEuc  1 e 1 0 ]
 "54
-[v _sensor sensor `VEc  1 e 1 0 ]
+[v _tem2 tem2 `VEuc  1 e 1 0 ]
 "55
 [v _contador contador `VEuc  1 e 1 0 ]
+"56
+[v _temp temp `f  1 e 4 0 ]
 "57
+[v _volt volt `f  1 e 4 0 ]
+[v _temperatura temperatura `f  1 e 4 0 ]
+"59
 [v _lcd1 lcd1 `[10]uc  1 e 10 0 ]
-"58
-[v _lcd2 lcd2 `[10]uc  1 e 10 0 ]
-"61
+"63
 [v _conv1 conv1 `f  1 e 4 0 ]
-"62
+"64
 [v _conv2 conv2 `f  1 e 4 0 ]
-"77
+"79
 [v _main main `(v  1 e 1 0 ]
 {
-"169
+"194
 } 0
-"173
+"198
 [v _setup setup `(v  1 e 1 0 ]
 {
-"191
+"216
 } 0
 "16 C:\Users\Earst\MPLABXProjects\Proyecto1_digital2\Master.X\Librerias.c
 [v _I2C_Master_Init I2C_Master_Init `(v  1 e 1 0 ]
@@ -205,8 +208,8 @@
 [v convert@temp temp `i  1 a 2 0 ]
 "177
 [v convert@data data `*.4uc  1 a 1 wreg ]
-[v convert@a a `f  1 p 4 70 ]
-[v convert@place place `i  1 p 2 74 ]
+[v convert@a a `f  1 p 4 72 ]
+[v convert@place place `i  1 p 2 76 ]
 "179
 [v convert@data data `*.4uc  1 a 1 4 ]
 "233
@@ -249,49 +252,49 @@
 "242 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\sprcadd.c
 [v ___flsub __flsub `(d  1 e 4 0 ]
 {
-[v ___flsub@a a `d  1 p 4 18 ]
-[v ___flsub@b b `d  1 p 4 22 ]
+[v ___flsub@a a `d  1 p 4 38 ]
+[v ___flsub@b b `d  1 p 4 42 ]
 "250
 } 0
 "10
 [v ___fladd __fladd `(d  1 e 4 0 ]
 {
 "17
-[v ___fladd@grs grs `uc  1 a 1 11 ]
+[v ___fladd@grs grs `uc  1 a 1 37 ]
 "15
-[v ___fladd@bexp bexp `uc  1 a 1 10 ]
+[v ___fladd@bexp bexp `uc  1 a 1 36 ]
 "16
-[v ___fladd@aexp aexp `uc  1 a 1 9 ]
+[v ___fladd@aexp aexp `uc  1 a 1 35 ]
 "13
-[v ___fladd@signs signs `uc  1 a 1 8 ]
+[v ___fladd@signs signs `uc  1 a 1 34 ]
 "10
-[v ___fladd@b b `d  1 p 4 0 ]
-[v ___fladd@a a `d  1 p 4 4 ]
+[v ___fladd@b b `d  1 p 4 18 ]
+[v ___fladd@a a `d  1 p 4 22 ]
 "237
 } 0
 "8 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\sprcmul.c
 [v ___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S595 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S597 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
 "13
-[s S600 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S603 . 4 `l 1 i 4 0 `d 1 f 4 0 `S595 1 fAsBytes 4 0 `S600 1 fAsWords 4 0 ]
-[v ___flmul@prod prod `S603  1 a 4 64 ]
+[s S602 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S605 . 4 `l 1 i 4 0 `d 1 f 4 0 `S597 1 fAsBytes 4 0 `S602 1 fAsWords 4 0 ]
+[v ___flmul@prod prod `S605  1 a 4 66 ]
 "12
-[v ___flmul@grs grs `ul  1 a 4 58 ]
-[s S672 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[v ___flmul@grs grs `ul  1 a 4 60 ]
+[s S674 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
 "14
-[u S675 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S672 1 nAsBytes 2 0 ]
-[v ___flmul@temp temp `S675  1 a 2 68 ]
+[u S677 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S674 1 nAsBytes 2 0 ]
+[v ___flmul@temp temp `S677  1 a 2 70 ]
 "10
-[v ___flmul@bexp bexp `uc  1 a 1 63 ]
+[v ___flmul@bexp bexp `uc  1 a 1 65 ]
 "11
-[v ___flmul@aexp aexp `uc  1 a 1 62 ]
+[v ___flmul@aexp aexp `uc  1 a 1 64 ]
 "9
-[v ___flmul@sign sign `uc  1 a 1 57 ]
+[v ___flmul@sign sign `uc  1 a 1 59 ]
 "8
-[v ___flmul@b b `d  1 p 4 44 ]
-[v ___flmul@a a `d  1 p 4 48 ]
+[v ___flmul@b b `d  1 p 4 46 ]
+[v ___flmul@a a `d  1 p 4 50 ]
 "205
 } 0
 "4 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8_16.c
