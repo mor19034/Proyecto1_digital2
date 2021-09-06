@@ -42,7 +42,12 @@ while True:
         valor = int(temperatura_data.value)
         puerto.write(b's') #mando codigo de caracter
         val = puerto.readline(3).decode('ascii') #recibo 2 bytes
-        val = int(val)  
+        val = int(val)
+        
+        valorh = int(humedad_data.value)
+        puerto.write(b'd') #mando codigo de caracter
+        valh = puerto.readline(3).decode('ascii') #recibo 2 bytes
+        valh = int(valh) 
 
         if(valor != temporal1 or val1 != temporal2):
             print(f'valor de temperatura: {temperatura_data.value}')
