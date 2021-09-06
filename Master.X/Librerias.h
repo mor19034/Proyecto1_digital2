@@ -89,7 +89,7 @@ void start_ch(uint8_t channel);
 //**********************función de librería de EUSART***************************
 void init_USART (void);
 char USART_Recieve(void);
-void USART_Cadena(char *str);
+//void USART_Cadena(char *str);
 void USART_Transmit(char dato);
 //******************************************************************************
 #endif	/* __LIBRERIAS_H */
