@@ -64,7 +64,7 @@ float cal;
 //**********Prototipos*************
 void setup(void);
 void floattostr(float numero_, unsigned char *cadena_,char decimales_);
-
+void ISR (void);
 //********Conversion para LCD**********
  void floattostr_(float numero_, unsigned char *cadena_,char decimales_)
 {
@@ -118,10 +118,23 @@ for (cont_for=0; cont_for < largo_n; cont_for++)
   }
 *cadena_ =0;    //anexa final de linea
 }
+void __interrupt() ISR(void){
+    if (PIR1bits.ADIF){
+            if(ADCON0bits.CHS == 0){
+            CCPR1L = (ADRESH>>1)+125;
+            PORTC++;
+        }
+        else{
+            CCPR2L = (ADRESH>>1)+125;
+        }
+        PIR1bits.ADIF = 0;
+    }
+    return;
+}
 
  
 void main(void) {
-   
+    
     setup();
     hx711_init();
     floattostr_(offset,offsett,1);
@@ -131,8 +144,19 @@ void main(void) {
      Lcd_Write_String("Off:");
      Lcd_Set_Cursor(2, 8);
      Lcd_Write_String(offsett);
+     ADCON0bits.GO = 1;     
     while(1){
-    
+        if(ADCON0bits.GO == 0){
+            if (ADCON0bits.CHS == 0){
+                ADCON0bits.CHS = 1;
+            }
+            else {
+                ADCON0bits.CHS = 0;
+                
+            }
+            __delay_us(200);
+            ADCON0bits.GO = 1;
+        }
     // peso=hx711_lectura(128)-(float)offset;
     peso=hx711_promedio(10,128)-(float)offset;
     peso=peso*factor;
@@ -166,8 +190,9 @@ void main(void) {
 // Función de Inicialización
 //*****************************************************************************
 void setup(void){
-    ANSEL = 0;
+    ANSEL = 0b00000011;
     ANSELH = 0;
+    TRISA = 0X03;
     TRISDbits.TRISD4 = 1;
     TRISDbits.TRISD5 = 1;
     TRISDbits.TRISD6 = 1;
@@ -185,6 +210,45 @@ void setup(void){
     OSCCONbits.IRCF1 = 1;
     OSCCONbits.IRCF0 = 1;
     OSCCONbits.SCS = 1;
-    
+    //Configuracion del ADC
+  ADCON1bits.ADFM = 0;
+  ADCON1bits.VCFG0 = 0;
+  ADCON1bits.VCFG1 = 0;
+  
+  ADCON0bits.ADCS = 0b10;
+  ADCON0bits.CHS = 0;
+  __delay_us(200);
+  ADCON0bits.ADON = 1;
+  __delay_us(200);
+     // cinfuguracion de PWM
+  TRISCbits.TRISC2 = 1;
+  TRISCbits.TRISC1 = 1;
+  PR2 = 250;
+  CCP1CONbits.P1M = 0;
+  CCP2CONbits.CCP2M = 0b1100;
+  CCP1CONbits.CCP1M = 0b1100;
+  
+  CCPR1L = 0X0F;
+  CCPR2L = 0X0F;
+  CCP1CONbits.DC1B = 0;
+  CCP2CONbits.DC2B0 = 0;
+  CCP2CONbits.DC2B1 = 0;
+  //Configuracion del TMR2
+  
+  PIR1bits.TMR2IF = 0;
+  T2CONbits.T2CKPS = 0b11;
+  T2CONbits.TMR2ON = 1;
+  
+  while(PIR1bits.TMR2IF == 0);
+  PIR1bits.TMR2IF = 0;
+  TRISCbits.TRISC2 = 0;
+  TRISCbits.TRISC1 = 0;
+  
+  //Configuracion de interrupciones
+  PIR1bits.ADIF = 0;
+  PIE1bits.ADIE = 1;
+  INTCONbits.PEIE = 1;
+  INTCONbits.GIE = 1;
+  return;
     
 }
