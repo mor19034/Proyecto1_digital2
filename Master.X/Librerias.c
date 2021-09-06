@@ -488,10 +488,10 @@ char USART_Recieve(){                //Leer datos
     return RCREG; 
    }
 
-void USART_Cadena(char *str){   //Envio de cadena de caracteres
-    while(*str != '\0'){
-        USART_Transmit(*str);
-        str++;
-    }
-}
+//void USART_Cadena(char *str){   //Envio de cadena de caracteres
+//    while(*str != '\0'){
+//        USART_Transmit(*str);
+//        str++;
+//    }
+//}
 

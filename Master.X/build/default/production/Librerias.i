@@ -2692,7 +2692,7 @@ void start_ch(uint8_t channel);
 
 void init_USART (void);
 char USART_Recieve(void);
-void USART_Cadena(char *str);
+
 void USART_Transmit(char dato);
 # 8 "Librerias.c" 2
 
@@ -3177,10 +3177,3 @@ void USART_Transmit(char dato){
 char USART_Recieve(){
     return RCREG;
    }
-
-void USART_Cadena(char *str){
-    while(*str != '\0'){
-        USART_Transmit(*str);
-        str++;
-    }
-}

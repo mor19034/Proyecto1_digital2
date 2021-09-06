@@ -2708,7 +2708,7 @@ void start_ch(uint8_t channel);
 
 void init_USART (void);
 char USART_Recieve(void);
-void USART_Cadena(char *str);
+
 void USART_Transmit(char dato);
 # 39 "Master.c" 2
 
@@ -2950,12 +2950,19 @@ float conv3 = 0;
 uint8_t datos_sensor[3];
 int dato;
 
-char ingreso;
+char cent, dect, unit, cenh, dech, unih;
+char ingreso, posicion, ada;
 
 
 
 
 void setup(void);
+char centenas (int dato);
+char decenas (int dato);
+char unidades (int dato);
+void USART_Tx(char data);
+char USART_Rx(void);
+void USART_Cadena(char *str);
 
 
 
@@ -3005,7 +3012,7 @@ void main(void) {
          var_hum = I2C_Master_Read(0);
          I2C_Master_Stop();
          _delay((unsigned long)((200)*(8000000/4000.0)));
-# 148 "Master.c"
+
         temp = tem1 << 8;
         temp = temp + tem2;
 
@@ -3014,14 +3021,12 @@ void main(void) {
 
         conv1 = 0;
 
-
         conv1 = temperatura;
 
         convert(lcd1, conv1, 2);
 
         conv0 = 0;
         conv0 = var_hum;
-
         convert(humedad, conv0, 2);
 
 
@@ -3034,15 +3039,35 @@ void main(void) {
         Lcd_Write_String(humedad);
         Lcd_Set_Cursor(2, 11);
         Lcd_Write_String("C");
-# 203 "Master.c"
+
+        cent = centenas(temperatura);
+        dect = decenas(temperatura);
+        unit = unidades(temperatura);
+        cent += 48;
+        dect += 48;
+        unit += 48;
+
+        cenh = centenas(humedad);
+        dech = decenas(humedad);
+        unih = unidades(humedad);
+        cenh += 48;
+        dech += 48;
+        unih += 48;
+
         if (PIR1bits.RCIF == 1){
             ingreso = USART_Recieve();
 
             if(ingreso == 's'){
-                USART_Transmit(temperatura);
-                USART_Transmit(humedad);
-
+                USART_Tx(cent);
+                USART_Tx(dect);
+                USART_Tx(unit);
             }
+            else if (ingreso == 'd') {
+                USART_Tx(cenh);
+                USART_Tx(dech);
+                USART_Tx(unih);
+            }
+
         }
         ingreso = 0;
         _delay((unsigned long)((500)*(8000000/4000.0)));
@@ -3075,4 +3100,37 @@ void setup(void){
     OSCCONbits.IRCF1 = 1;
     OSCCONbits.IRCF0 = 1;
     OSCCONbits.SCS = 1;
+}
+
+char centenas (int dato){
+    char out = dato / 100;
+    return out;
+}
+
+char decenas (int dato){
+    char out;
+    out = (dato % 100) / 10;
+    return out;
+}
+
+char unidades (int dato){
+    char out;
+    out = (dato % 100) % 10;
+    return out;
+}
+
+void USART_Tx(char data){
+    while(TXSTAbits.TRMT == 0);
+    TXREG = data;
+}
+
+char USART_Rx(){
+    return RCREG;
+   }
+
+void USART_Cadena(char *str){
+    while(*str != '\0'){
+        USART_Tx(*str);
+        str++;
+    }
 }

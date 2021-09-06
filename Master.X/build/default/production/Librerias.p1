@@ -2027,33 +2027,3 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;Librerias.c: 489:    }
 [e :UE 262 ]
 }
-"491
-[; ;Librerias.c: 491: void USART_Cadena(char *str){
-[v _USART_Cadena `(v ~T0 @X0 1 ef1`*uc ]
-{
-[e :U _USART_Cadena ]
-[v _str `*uc ~T0 @X0 1 r1 ]
-[f ]
-"492
-[; ;Librerias.c: 492:     while(*str != '\0'){
-[e $U 264  ]
-[e :U 265 ]
-{
-"493
-[; ;Librerias.c: 493:         USART_Transmit(*str);
-[e ( _USART_Transmit (1 *U _str ]
-"494
-[; ;Librerias.c: 494:         str++;
-[e ++ _str * -> -> 1 `i `x -> -> # *U _str `i `x ]
-"495
-[; ;Librerias.c: 495:     }
-}
-[e :U 264 ]
-"492
-[; ;Librerias.c: 492:     while(*str != '\0'){
-[e $ != -> *U _str `ui -> 0 `ui 265  ]
-[e :U 266 ]
-"496
-[; ;Librerias.c: 496: }
-[e :UE 263 ]
-}
