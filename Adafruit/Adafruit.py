@@ -12,14 +12,15 @@ nulo = 0        #valor nulo
 nulo = str(nulo)#char nulo
 temporal1 = 0
 temporal2 = 0
+val1=0
 
 #ubicación de mi plataforma
-ADAFRUIT_IO_KEY = "aio_VifF06V2bL60eCycFW47k9ElAwgp"  #contraseña
+ADAFRUIT_IO_KEY = "aio_djai86Ee1ftf42YPh3KEy4tXnuiF"  #contraseña
 ADAFRUIT_IO_USERNAME = "mor19034"                    #usuario
 aio = Client(ADAFRUIT_IO_USERNAME, ADAFRUIT_IO_KEY)
 
 #Defino nombre de comunicación
-puerto = serial.Serial("COM8",9600) 
+puerto = serial.Serial("COM3",9600) 
 puerto.timeout = 3 #tiempo de espera para recibir datos
 time.sleep(1) #para que establezca conexion
 
@@ -49,7 +50,7 @@ while True:
         valh = puerto.readline(3).decode('ascii') #recibo 2 bytes
         valh = int(valh) 
 
-        if(valor != temporal1 or val1 != temporal2):
+        if(valor != temporal1 or val != temporal2):
             print(f'valor de temperatura: {temperatura_data.value}')
             print(f'valor de humedad: {humedad_data.value} \n')
 
@@ -67,14 +68,15 @@ while True:
             #print(val)
             
             #cliente.send_data(mifeed.feed.key, valor a enviar) ; Esto para mandar dato y leer
-            aio.send_data(humedad_feed.key, val)
+            aio.send_data(humedad_feed.key, valh)
+            aio.send_data(temperatura_feed.key, val)
             print('----------------------------------------------------')
             temporal1 = int(temperatura_data.value)
             temporal2 = int(humedad_data.value)
 
             
-    valor = int(calidad_aire_data.value) #chequo si detener la simulación
-        if valor == 1:
-            break
-        time.sleep(0.1)
-print('Mala calidad de aire')
+##    valor = int(calidad_aire_data.value) #chequo si detener la simulación
+##        if valor == 1:
+##            break
+##        time.sleep(0.1)
+##print('Mala calidad de aire')
